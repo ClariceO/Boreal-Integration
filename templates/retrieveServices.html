@@ -1,0 +1,84 @@
+<!--create home.html template by extending base.html template-->
+<!--basehtml is being used by base.html-->
+{% extends "base.html" %}
+<!--replace content of {} server-side jinja2 tags changes title to Library Loan System-->
+{% block title %}Boreal - Services{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+<style>
+a.close{
+    color:black;
+    text-decoration:none;
+    padding-top:4px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if 'service_created' in session %}
+<div class="alert alert-success alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+{{ session.pop('service_created', None) }} was created.
+</div>
+{% elif 'service_updated' in session %}
+<div class="alert alert-warning alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+{{ session.pop('service_updated', None) }} was updated.
+</div>
+{% elif 'service_deleted' in session %}
+<div class="alert alert-danger alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+{{ session.pop('service_deleted', None) }} was deleted.
+</div>
+{% endif %}
+
+<!--insert python for service_img, service_name, service_description, service_price -->
+<ul class="pt-4 nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" href="#Classic">Classic</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#Treatment">Treatment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#Color">Color</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#Perm">Perm</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link " href="#Straighten">Straighten</a>
+  </li>
+</ul>
+
+{% for service in services_list %}
+
+<div class="container pb-5 pt-5 service">
+    <h1 id="{{ service.get_service() }}">{{ service.get_service() }}</h1>
+    <img src="{{ service.get_service_image() }}" alt="{{ service.get_service_id() }}">
+    <div style="word-wrap: break-word;">{{ service.get_description() }}</div>
+    <p>Minimum Price: $<span>{{ service.get_service_price() }}</span></p>
+
+    <!--admin use-->
+    <div class="flex-container">
+    <a href="/updateService/{{service.get_service_id()}}" class="change flex-child btn btn-warning">Update</a>
+    <form class="flex-child" action="/deleteService/{{service.get_service_id()}}" method="POST">
+    <input type="submit" value="Delete" class="delete btn btn-danger">
+    </form>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+<!--    <div class="container pb-5 text-center pt-5 service">-->
+<!--    <h1>Classic</h1>-->
+<!--    <img src="https://static.thehoneycombers.com/wp-content/uploads/sites/4/2019/06/stylist-cutting-long-hair_925x.jpg" alt="Classic Image">-->
+<!--    <div>Our classic service is all about......</div>-->
+<!--    <span>Minimum Price: $<span>50</span></span>-->
+<!--</div>-->
+
+
+{% block scripts %}{% endblock %}
+{% endblock %}

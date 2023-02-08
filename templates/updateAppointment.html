@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Update Appointment{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
+{% endblock %}
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<div class="container">
+    <header>Update Appointment</header>
+         <div class="progress-bar">
+            <div class="step">
+               <p>
+                  Choose your<br>hairstylist
+               </p>
+               <div class="bullet">
+                  <span>1</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>
+                  Schedule<br>Appointment
+               </p>
+               <div class="bullet">
+                  <span>2</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>
+                  Services<br>you want
+               </p>
+               <div class="bullet">
+                  <span>3</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+               <p>
+                  Personal<br>Information
+               </p>
+               <div class="bullet">
+                  <span>4</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+             <div class="step">
+               <p>
+                  Booking<br>Confirmation
+               </p>
+               <div class="bullet">
+                  <span>5</span>
+               </div>
+               <div class="check fas fa-check"></div>
+            </div>
+         </div>
+         <div class="form-outer">
+            <form method="POST" action="#">
+               <div class="page slide-page">
+                  <div class="title">
+                     Choose your hairstylist :
+                  </div>
+                   <div style="visibility:hidden; color:red;text-align:left; " id="hairstylist_error">
+                    You have not selected a hairstylist*
+                    </div>
+                  <div class="field">
+                      <div class="label">
+                        Hairstylist
+                     </div>
+                      {{ render_field(form.hairstylist) }}
+<!--                      <select id="hairstylist" name="hairstylist">-->
+<!--                          <option default value="">&#45;&#45;Please Select a hairstylist&#45;&#45;</option>-->
+<!--                        <option value="mark_chan">Mark Chan</option>-->
+<!--                        <option value="bob_chu">Bob Chu</option>-->
+<!--                        <option value="candy_loh">Candy Loh</option>-->
+<!--                          <option value="ray_tan">Ray Tan</option>-->
+<!--                     </select>-->
+                  </div>
+
+                  <div class="field">
+                     <button class="firstNext next">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">
+                     Schedule :
+                  </div>
+                   <div style="visibility:hidden; color:red;text-align:left; " id="schedule_error">
+                    You have not selected a <span id="dateORtime"></span> for your appointment*
+                    </div>
+                  <div class="field">
+                     <div class="label">
+                        Date
+                     </div>
+                      {{ render_field(form.date, min="") }}
+<!--                     <input type="date" id="date" name="Date">-->
+                  </div>
+                  <div class="field">
+                     <div class="label">
+                        Time
+                     </div>
+                      {{ render_field(form.time) }}
+<!--                     <input step="900" type="time" name="time" id="time">-->
+                  </div>
+                  <div class="field btns">
+                     <button class="prev-1 prev">Previous</button>
+                     <button class="next-1 next">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">
+                     Services :
+                  </div>
+                    <div style="visibility:hidden; color:red;text-align:left; " id="chk_option_error">
+                    Please select at least one option.*
+                    </div>
+                  <div style="height:300px;" class="field">
+                     <div class="label">
+                        Choose your service(s)
+                     </div>
+                    <div class="field">
+                     <div class="label">
+                     </div>
+                      {{ render_field(form.services, class="form-check", onclick="totalPrice()") }}
+                  </div>
+<!--                      <table border="0" style="padding-top:20px;">-->
+<!--                          <tr>-->
+<!--                              <td>-->
+
+<!--                                  <input type="checkbox" name="service" id="Classic" value="50" onclick="totalPrice()">-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                  <label for="Classic">Classic</label>-->
+<!--                              </td>-->
+<!--                          </tr>-->
+<!--                          <tr>-->
+<!--                              <td>-->
+<!--                                <input type="checkbox" name="service" id="Treatment" value="250" onclick="totalPrice()">-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                  <label for="Treatment">Treatment</label>-->
+<!--                          </td>-->
+<!--                          </tr>-->
+<!--                          <tr>-->
+<!--                              <td>-->
+<!--                                <input type="checkbox" name="service" id="Color" value="120" onclick="totalPrice()">-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                  <label for="Color">Color</label>-->
+<!--                          </td>-->
+<!--                          </tr>-->
+<!--                          <tr>-->
+<!--                              <td>-->
+<!--                                <input type="checkbox" name="service" id="Perm" value="150" onclick="totalPrice()">-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                  <label for="Perm">Perm</label>-->
+<!--                          </td>-->
+<!--                          </tr>-->
+<!--                          <tr>-->
+<!--                              <td>-->
+<!--                                <input type="checkbox" name="service" id="Straighten" value="180" onclick="totalPrice()">-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                  <label for="Straighten">Straighten</label>-->
+<!--                              </td>-->
+<!--                          </tr>-->
+<!--                      </table>-->
+
+                  </div>
+
+                   <div id="price"><p>Approximate Price: $<span id="total">0.00</span></p></div>
+
+                  <div class="field btns">
+                     <button class="prev-2 prev">Previous</button>
+                     <button class="next-2 next">Next</button>
+                  </div>
+               </div>
+                <div class="page">
+                  <div class="title">
+                     Personal Information :
+                  </div>
+                  <div class="field">
+                     <div class="label">
+                        Name
+                     </div>
+                      {{ render_field(form.name, class="form-control") }}
+<!--                     <input disabled value="Clarice Ong" type="text" id="user" name="name">-->
+                  </div>
+                  <div class="field">
+                     <div class="label">
+                        Contact Number
+                     </div>
+                      {{ render_field(form.contact, class="form-control") }}
+<!--                     <input disabled value="81235673" type="number" id="contact_number" name="contact_number">-->
+                  </div>
+                    <div class="field">
+                     <div class="label">
+                        Email
+                     </div>
+                        {{ render_field(form.email, class="form-control") }}
+<!--                     <input disabled value="clariceong@hotmail.com" type="email" id="email" name="email">-->
+                  </div>
+                    <div style="height:100px;" class="field">
+                     <div class="label">
+                        Remarks
+                     </div>
+                        {{ render_field(form.remarks, placeholder='Please leave blank if you have no remarks.....') }}
+<!--                        <textarea style="resize:none; height:100px" placeholder="Tell us anything...." name="remarks"></textarea>-->
+                  </div>
+                  <div class="field btns">
+                     <button class="prev-3 prev">Previous</button>
+                     <button class="next-3 next" onclick="showInput();">Next</button>
+                  </div>
+               </div>
+               <div class="page">
+                  <div class="title">
+                     Booking Summary :
+                  </div>
+                   <table class="summary-table" style="text-align:left;">
+                       <tr>
+                           <th>Hairstylist:</th>
+                           <td id="summary1"></td>
+                       </tr>
+                       <tr>
+                           <th>Date:</th>
+                           <td id="summary2"></td>
+                       </tr>
+                       <tr>
+                           <th>Time:</th>
+                           <td id="summary3"></td>
+                       </tr>
+                       <tr>
+                           <th>Service Approximate Price ($):</th>
+                           <td id="summary4"></td>
+                       </tr>
+                       <tr>
+                           <th>Remarks:</th>
+                           <td id="summary5"></td>
+                       </tr>
+                   </table>
+                  <!--insert table summary-->
+                  <div class="field btns">
+                     <button class="prev-4 prev">Previous</button>
+                     <button type="submit" value="submit" class="submit">Submit</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/stepformscripts.js') }}"></script>
+{% endblock %}

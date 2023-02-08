@@ -1,0 +1,298 @@
+/*Clarice's CSS file*/
+/*Form Page*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+header {
+    font-family: 'Cinzel', sans-serif;
+    font-weight:500;
+}
+body{
+
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-y: scroll;
+
+}
+::selection{
+  color: #fff;
+  background: #BBA18E;
+}
+
+.container{
+  width: 700px;
+  height: 900px;
+  background: #fff;
+  color: #707070;
+  border-radius:10px;
+  text-align: center;
+  /*box-shadow: 8px 5px 10px 0px rgba(0,0,0,0.2);*/
+  padding: 30px 50px 10px 50px;
+}
+
+.container-table{
+  width: 100%;
+  background: #fff;
+  color: #707070;
+  border-radius:10px;
+  text-align: center;
+  /*box-shadow: 8px 5px 10px 0px rgba(0,0,0,0.2);*/
+  padding: 30px 50px 10px 50px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.container header{
+  font-size: 35px;
+  font-weight: 600;
+}
+.container .form-outer{
+  width: 100%;
+  overflow: hidden;
+}
+.container .form-outer form{
+  display: flex;
+  width: 500%;
+}
+.form-outer form .page{
+  width:25%;
+  transition: margin-left 0.3s ease-in-out;
+  height:650px;
+}
+.form-outer form .page .title{
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
+.form-outer form .page .field{
+  width: 400px;
+  height: 35px;
+  margin: 45px 0 10px 110px;
+  display: flex;
+  position: relative;
+}
+form .page .field .label{
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+form .page .field input, textarea, select{
+  height: 100%;
+  width: 100%;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+form .field input:focus , select:focus, textarea:focus {
+  border-color: #944949;
+}
+
+form .page .field select:focus {
+  border-color: #944949;
+}
+
+form .page .field button{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #BAA08D;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+form .page .field button:hover{
+  background: #944949;
+}
+
+form .page .btns button.prev{
+  margin-right: 3px;
+  font-size: 17px;
+}
+form .page .btns button.next{
+  margin-left: 3px;
+}
+.container .progress-bar{
+  display: flex;
+  margin: 25px 0;
+  user-select: none;
+  background-color:white;
+  flex-direction:row;
+  color:#707070;
+}
+.container .progress-bar .step{
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+.container .progress-bar .step p{
+  font-weight: 500;
+  font-size: 18px;
+  color: #707070;
+  margin-bottom: 8px;
+  display:block;
+  margin-block-start:0px;
+  margin-block-end:8px;
+  margin-inline-end:0px;
+  margin-inline-start:0px;
+}
+.progress-bar .step .bullet{
+  height: 30px;
+  width: 30px;
+  border: 2px solid #707070;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+}
+.progress-bar .step .bullet.active{
+  border-color: #fff;
+  background: #944949;
+}
+.progress-bar .step .bullet span{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-bar .step .bullet.active span{
+  display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 11px;
+  right: -90px;
+  height: 3px;
+  width: 90px;
+  background: #262626;
+}
+.progress-bar .step .bullet.active:after{
+  background: #944949;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+  100%{
+    transform: scaleX(1);
+  }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+  display: none;
+}
+.progress-bar .step p.active{
+  color: #944949;
+  transition: 0.2s linear;
+}
+.progress-bar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 79%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.progress-bar .step .check.active{
+  display: block;
+  color: #fff;
+}
+.credit{
+    text-align: center;
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.credit a{
+    text-decoration: none;
+    color: #944949;
+    font-weight: bold;
+}
+
+table tr td{
+    text-align:left;
+    padding-left:10px;
+    font-size:20px;
+}
+
+p.active {
+    background: white;
+}
+
+#service-0, #service-1, #service-2, #service-3, #service-4 {
+    width: auto;
+    float:left;
+
+
+}
+
+.field ol li label{
+    position:relative;
+    bottom:6px;
+    left:6px;
+}
+.field ol li input{
+    padding:6px;
+
+}
+
+.field ol {
+    text-align:left;
+}
+
+.change{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #BAA08D;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  transition: 0.5s ease;
+}
+.delete {
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #C70039;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  transition: 0.5s ease;
+
+}
+.change:hover{
+  background: #944949;
+  color: #fff
+}
+
+.delete:hover{
+  background: #FF5733;
+  color: #fff
+}
+.summary-table{
+    margin:80px;
+    font-size:18px;
+}
+
+.table{
+--bs-table-striped-bg: #f9f9f9;
+}

@@ -1,0 +1,249 @@
+<!--create home.html template by extending base.html template-->
+<!--basehtml is being used by base.html-->
+{% extends "base.html" %}
+<!--replace content of {} server-side jinja2 tags changes title to Library Loan System-->
+{% block title %}Boreal - Home{% endblock %}
+{% block css %}
+ <!-- Favicon-->
+        <link rel="icon" href="{{ url_for('static', filename='main.jpg') }}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+{% endblock %}
+
+<div class="content">
+{% block content %}
+ <main>
+
+        <!-- Header - set the background image for the header in the line below-->
+        <header class="py-5 bg-image-full" style="position:relative; z-index:-5; overflow:hidden;background-image: url('https://errolwilly.co.uk/files/pageimages/Errol-Willy-Women-and-Mens-Hairdressing-and-Beauty-Salon-Wellfield-Road-Penylan-Cardiff-Home-Page-1-Website.jpg') ">
+          <div class="row" style="--bs-gutter-x:0rem;">
+          <div style="z-index:-1;" class="col-5 text-center my-5">
+                <img class="img-fluid rounded-circle mb-4" src="/static/img/Boreal1.png" alt="logo" />
+                <p class="headerwords">Boreal, where we care <br>for your hair for real.</p>
+                <p style="position : relative ;font-family: 'Poppins', sans-serif;">Been styling since 1958</p>
+          </div>
+          </div>
+        </header>
+        <!-- Content section-->
+        <!-- testimonial section-->
+<section class="reviews mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10 col-xl-8 text-center">
+      <h2 class="mb-4" style="font-family: 'Poppins', sans-serif;">Our Top Reviews</h2>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-md-4 mb-5 mb-md-0">
+      <div class="d-flex justify-content-center mb-4">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+          class="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 class="mb-3">Maria Smantha</h5>
+      <p class="px-xl-3">
+        <i class="fas fa-quote-left pe-2"></i>
+          Today I went to Boreal to get a detox treatment.
+        Before beginning, Mark and Candy analysed my appearance and showed
+        me the before and after pictures of customers they have had in the past.
+        Overall, it was a good experience
+        and I will continue to visit Boreal.
+      </p>
+      <ul class="list-unstyled d-flex justify-content-center mb-0">
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-4 mb-5 mb-md-0">
+      <div class="d-flex justify-content-center mb-4">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+          class="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 class="mb-3">Lisa Cudrow</h5>
+      <p class="px-xl-3">
+        <i class="fas fa-quote-left pe-2"></i>
+        With Boreal, Mark for 2-3years. Great service
+        and friendly team. Always feels good after hair treatments and see
+        improvements on my hair growth. 👍🏻
+
+      </p>
+      <ul class="list-unstyled d-flex justify-content-center mb-0">
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-4 mb-0">
+      <div class="d-flex justify-content-center mb-4">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+          class="rounded-circle shadow-1-strong" width="150" height="150" />
+      </div>
+      <h5 class="mb-3">John Smith</h5>
+      <p class="px-xl-3">
+        <i class="fas fa-quote-left pe-2"></i>
+        Been with Boreal for a few years then covid
+        came. Candy is good. Great advice & sincerity.
+        Ryan the assistant for washing gives great massage & u shud book both for a hair appt.
+        Gd thing is they don't "insult" as I don't have much hair. The only thing I found
+        uncomfortable is the signing up for packages which I wasn't keen.
+      </p>
+      <ul class="list-unstyled d-flex justify-content-center mb-0">
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="fas fa-star fa-sm text-warning"></i>
+        </li>
+        <li>
+          <i class="far fa-star fa-sm text-warning"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section id="about" class="about mt-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h1>About Us</h1>
+        </div>
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Established in <span class="text-muted">1958</span></h2>
+            <p class="lead">Boreal is a hair salon located in 180 Ang Mo Kio Ave 8, Singapore 569830. We aim to serve the richest ornament of our customers in the most seamless and professional way possible.</p>
+          </div>
+          <div class="col-md-5">
+            <img src="/static/img/hairsalon2.jpg" class="img-fluid rounded-4 mb-4" alt="" style="position : relative;left : 20px;bottom:0px;  height: 400px;width: 420px;margin : 20px; clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">WHAT <span class="text-muted">WE DO?</span></h2>
+            <p class="lead">We are a team of highly-skilled professional stylists trained and certified to
+              specialize in hair care and design at our salon. As of now we offer 5 different types of services Classic (Cut and Wash), Hair Treatment,
+            Coloring, Straightening and Perming.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img  src="/static/img/hairsalon.jpg" class="img-fluid rounded-4" style="position : relative;right:50px;top: 0px;height: 420px;width: 450px;margin : 20px;clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);">
+          </div>
+        </div>
+      </div>
+    </section>
+   <!-- Carousel wrapper -->
+<div id="carouselBasicExample" class="carousel slide carousel-fade mt-5" data-mdb-ride="carousel">
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselBasicExample"
+      data-mdb-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+
+  <!-- Inner -->
+  <div style="text-shadow: black 1px 0 10px;" class="carousel-inner">
+    <!-- Single item -->
+    <div class="carousel-item active">
+      <img src="https://www.buyritebeauty.com/blog/wp-content/uploads/2018/06/The-Parlor-House_5.jpg" class="d-block w-100" style="width : 800px; height : 353px;" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Get Account Now!</h5>
+        <p>Boreal will enable you to save your trips to the salon and evaluate us however you like</p>
+      </div>
+    </div>
+
+    <!-- Single item -->
+    <div class="carousel-item">
+      <img src="https://thisisgalway.ie/wp-content/uploads/2021/05/Get-Your-Hair-Done-Feature.jpeg" class="d-block w-100" style="width : 800px; height : 353px;"/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Book an appointment here</h5>
+        <p>avoid long walk-in waiting time</p>
+      </div>
+    </div>
+
+    <!-- Single item -->
+    <div class="carousel-item">
+      <img src="http://amtrustfinancial.com/getmedia/4b2234c4-e3bf-4b8b-b207-fc57f29df5d4/GettyImages-1030255416-hair-salons-1200x630-min.jpg" class="d-block w-100" style="width : 800px; height : 353px;" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Check out what our customers thought about us</h5>
+        <p>You may visit out Review tab to read and find photos of what services our customers had received</p>
+      </div>
+    </div>
+  </div>
+  <!-- Inner -->
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->
+      <section class="text-center mt-5">
+      <h2 class="mb-4">Location</h2>
+<iframe style="position:relative; z-index:-5;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1256.349965857684!2d103.84993229201892!3d1.379321551131607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb92a1ba23%3A0x8f5f35132b90361f!2sNanyang%20Polytechnic%20Block%20L!5e0!3m2!1sen!2ssg!4v1674538235802!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+    </main>
+</div>
+{% block scripts %}
+<script src="{{url_for('static', filename='js/scripts.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+{% endblock %}
+{% endblock %}

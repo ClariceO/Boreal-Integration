@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Boreal - My Appointments{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
+<style>
+a.close{
+    color:black;
+    text-decoration:none;
+    padding-top:4px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+{% if 'appointment_created' in session %}
+<div class="alert alert-success alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+Appointment {{ session.pop('appointment_created', None) }} was created.
+</div>
+{% elif 'appointment_updated' in session %}
+<div class="alert alert-warning alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+Appointment {{ session.pop('appointment_updated', None) }} was updated.
+</div>
+{% elif 'appointment_deleted' in session %}
+<div class="alert alert-danger alert-dismissible">
+<a type="button" class="close" data-dismiss="alert">&times;</a>
+Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
+</div>
+{% endif %}
+
+
+
+<div class="container container-table">
+<header>My Appointments</header>
+<div>
+{% if count == 0 %}
+<p>There are no users.</p>
+{% elif count == 1 %}
+<p>You have 1 appointment.</p>
+{% else %}
+<p>You have {{ count }} appointments.</p>
+{% endif %}
+</div>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Services</th>
+        <th>Hairstylist</th>
+        <th>Remarks</th>
+
+      </tr>
+    </thead>
+    <tbody>
+     {% for appointment in appointments_list %}
+      <tr>
+      <td>{{ appointment.get_appointment_id() }}</td>
+      <td>{{ appointment.get_date() }}</td>
+      <td>{{ appointment.get_time() }}</td>
+        <td>
+          {% for price in appointment.get_services() %}
+
+          {% if price == 50 %}
+            <p>Classic</p>
+            {% elif price == 250 %}
+            <p>Treatment</p>
+            {% elif price == 120 %}
+            <p>Color</p>
+            {% elif price == 150 %}
+            <p>Perm</p>
+            {% elif price == 180 %}
+            <p>Straighten</p>
+          {% endif %}
+
+          {% endfor %}
+          </td>
+
+          {% if appointment.get_hairstylist() == 'Mark Chan' %}
+            <td>Mark Chan</td>
+            {% elif appointment.get_hairstylist() == 'Harry Cheong' %}
+            <td>Harry Cheong</td>
+            {% elif appointment.get_hairstylist() == 'Candy Loh<' %}
+            <td>Candy Loh</td>
+            {% elif appointment.get_hairstylist() == 'Ray Tan' %}
+            <td>Ray Tan</td>
+          {% endif %}
+
+      <td>{{ appointment.get_remarks() }}</td>
+
+
+      <td><a href="/updateAppointment/{{appointment.get_appointment_id()}}" class="change btn btn-warning">Change</a></td>
+      <td>
+      <form action="/deleteAppointment/{{appointment.get_appointment_id()}}" method="POST">
+      <input type="submit" value="Delete" class="delete btn btn-danger">
+
+      </form>
+      </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}

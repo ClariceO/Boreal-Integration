@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,500,600,700&display=swap');
+
+.service img{
+    margin-bottom:10px;
+    width:60%;
+    border-radius:8px;
+}
+
+.service h1 {
+    font-family: 'Cinzel', sans-serif;
+    font-weight:500;
+}
+
+div.container {
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+.flex-container {
+    display:inline-flex;
+}
+
+
+.flex-child:first-child {
+    margin-right: 20px;
+}
+
+.change{
+  border: none;
+  background: #BAA08D;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  transition: 0.5s ease;
+}
+.delete {
+  border: none;
+  background: #C70039;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  transition: 0.5s ease;
+}
+
+.change:hover, .change:focus{
+  background: #944949;
+  color: #fff;
+}
+
+.delete:hover{
+  background: #FF5733;
+  color: #fff
+
+}
+
+.nav-link {
+    color: rgba(120,0,0,255);
+}
+
+.nav-link:hover {
+    color:black;
+}
+
+

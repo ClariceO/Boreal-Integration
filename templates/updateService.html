@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Update Services{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+{% endblock %}
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<div class="container service pt-5">
+<h1 class="display-4">Update Services</h1>
+<form method="POST" action="">
+<div class="form-group">
+{{ render_field(form.service, placeholder="Service Type", class="form-control") }}
+</div>
+<div class="form-group">
+{{ render_field(form.description, class="form-control", placeholder="Description") }}
+</div>
+<div class="form-group">
+{{ render_field(form.service_price, class="form-control", placeholder="Price") }}
+</div>
+<div class="form-group">
+{{ render_field(form.service_image, class="form-control", placeholder="Image URL") }}
+</div>
+    &nbsp;<br>
+    &nbsp;<br>
+<input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+</div>
+{% endblock %}

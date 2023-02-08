@@ -1,0 +1,135 @@
+/*NB_BACKG*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,500,600,700&display=swap');
+
+    *{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+
+}
+    .sidebar a {
+    text-decoration: none;
+    }
+
+    ul{
+     padding:0;
+     padding-left:0;
+    }
+
+    body{
+        background: #f5f6fa;
+        margin-left: 272.75px;
+        }
+
+    .wrapper .sidebar{
+        background: -7;
+        background: linear-gradient(0deg, rgba(139,96,64,255) 5%, #BBA18E);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 20px 0;
+        transition: all 0.5s ease;}
+
+/*NB_PROFILE/COMPANY_LOGO*/
+    .wrapper .sidebar .profile{
+        margin-bottom: 30px;
+        text-align: center;}
+
+    .wrapper .sidebar .profile img{
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto;}
+
+    .wrapper .sidebar .profile h3{
+        color: #ffffff;
+        margin: 10px 0 5px;}
+
+    .wrapper .sidebar .profile p{
+        color: rgb(206, 240, 253);
+        font-size: 14px;}
+
+/*NB_MAINMENU*/
+    .wrapper .sidebar ul li a{
+        display: block;
+        /* color: rgb(241,241,241); */
+        font-size: 16px;
+        position: relative;}
+
+    .wrapper .sidebar ul li a .icon{
+        color: rgb(241,241,241);
+        width: 30px;
+        display: inline-block;}
+
+    /* .wrapper .sidebar ul li a:hover {
+        color: rgba(208,212,217,255);
+        background: rgb(142,90,65);  } */
+
+    /* .wrapper .sidebar ul li a.active{
+        color: rgba(208,212,217,255);
+        background: rgb(117, 81, 65);
+        border-right: 3px solid rgb(142,90,65);} */
+
+    .wrapper .sidebar ul li a:hover .icon,
+    .wrapper .sidebar ul li a.active .icon{
+        color: rgb(241,241,241);}
+
+    .wrapper .sidebar ul li a:hover:before,
+    .wrapper .sidebar ul li a.active:before{
+        display: block;}
+
+    /*custom classes*/
+    .dropdown {
+        padding: 19px 30px;}
+
+    .dropbtn{
+        color: rgb(241,241,241);}
+
+    .active {
+        color: rgba(208,212,217,255);
+        background: rgb(117, 81, 65);}
+
+    .dropdown:hover {
+        color: rgba(208,212,217,255);
+        background: rgb(142,90,65);}
+/*NB_SUBMENU*/
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 200px;
+        box-shadow: 8px 5px 10px 0px rgba(0,0,0,0.2);
+        border-radius: 6px;
+   }
+
+    .dropdown-content a {
+        color: black;
+        padding: 15px 16px;
+        margin:4px;
+        text-decoration: none;
+        display: block;
+        position:relative;
+        border-radius: 3px;}
+
+.dropdown-content a:hover {background-color: #d8dae4;}
+.dropdown:hover .dropdown-content {display: block;}
+
+    /*menu_positioning*/
+    #cont1, #cont2, #cont3, #cont4, #cont5, #cont6 {
+        left: 272.75px;
+        top:1px;
+
+          }
+
+
+/*our content div css*/
+div.content {
+  padding: 0px;
+  height: 1000px;
+  position:relative;
+}
