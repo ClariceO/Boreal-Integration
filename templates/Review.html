@@ -1,0 +1,22 @@
+<!--create index.html template by extending base.html template-->
+<!--basehtml is being used by base.html-->
+{% extends "base.html" %}
+<!--replace content of {} server-side jinja2 tags changes title to Library Loan System-->
+{% block title %}Boreal - Home{% endblock %}
+{% block css %}
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/websitereview.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+         <h1>Leave a review !</h1>
+   <div class="main">
+       <div class="backbutton">
+           <a href="#">Leave a website review</a>
+       </div>
+
+   </div>
+
+</main>
+{% endblock %}

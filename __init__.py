@@ -1,9 +1,15 @@
+# Clarice's
 from flask import Flask, render_template, request, redirect, url_for, session
 from Forms import CreateBookingForm, CreateServiceForm
 import shelve
 import Appointment, Service
 
+# Ana's
+from Forms import CreateUserForm
+import User
 
+
+# Clarice's
 app = Flask(__name__)
 app.secret_key = 'HiImTheKey'
 
@@ -12,6 +18,109 @@ app.secret_key = 'HiImTheKey'
 def home():
     return render_template('home.html')
 
+
+# Ana's
+
+
+@app.route('/Review')
+def review():
+    return render_template('Review.html')
+
+@app.route('/createUser', methods=['GET', 'POST'])
+def create_user():
+    create_user_form = CreateUserForm(request.form)
+    if request.method == 'POST' and create_user_form.validate():
+        users_dict = {}
+        db = shelve.open('user.db', 'c')
+
+        try:
+            users_dict = db['Users']
+        except:
+            print("Error in retrieving Users from user.db.")
+
+        user = User.User(create_user_form.first_name.data, create_user_form.last_name.data,create_user_form.gender.data, create_user_form.date.data, create_user_form.remarks.data , create_user_form.file.data)
+        users_dict[user.get_user_id()] = user
+        db['Users'] = users_dict
+
+        db.close()
+
+        return redirect(url_for('retrieve_users'))
+    return render_template('createUser.html', form=create_user_form)
+
+
+
+@app.route('/index')
+def logo():
+    return render_template('index.html')
+
+@app.route('/websitereview')
+def retrieve_users():
+    users_dict = {}
+    db = shelve.open('user.db', 'r')
+    users_dict = db['Users']
+    db.close()
+
+    users_list = []
+    for key in users_dict:
+        user = users_dict.get(key)
+        users_list.append(user)
+
+    return render_template('websitereview.html', users_list=users_list)
+
+
+@app.route('/updateUser/<int:id>/', methods=['GET', 'POST'])
+def update_user(id):
+    update_user_form = CreateUserForm(request.form)
+    if request.method == 'POST' and update_user_form.validate():
+        users_dict = {}
+        db = shelve.open('user.db', 'w')
+        users_dict = db['Users']
+        user = users_dict.get(id)
+        user.set_first_name(update_user_form.first_name.data)
+        user.set_last_name(update_user_form.last_name.data)
+        user.set_gender(update_user_form.gender.data)
+        user.set_date(update_user_form.date.data)
+        user.set_file(update_user_form.file.data)
+        user.set_remarks(update_user_form.remarks.data)
+        db['Users'] = users_dict
+        db.close()
+        return redirect(url_for('retrieve_users'))
+    else:
+        users_dict = {}
+        db = shelve.open('user.db', 'r')
+        users_dict = db['Users']
+        db.close()
+        user = users_dict.get(id)
+        update_user_form.first_name.data = user.get_first_name()
+        update_user_form.last_name.data = user.get_last_name()
+        update_user_form.gender.data = user.get_gender()
+        update_user_form.date.data = user.get_date()
+        update_user_form.file = user.get_file()
+        update_user_form.remarks.data = user.get_remarks()
+        return render_template('updateUser.html' , form = update_user_form)
+
+@app.route('/deleteUser/<int:id>', methods=['POST'])
+def delete_user(id):
+    users_dict = {}
+    db = shelve.open('user.db', 'w')
+    users_dict = db['Users']
+    users_dict.pop(id)
+    db['Users'] = users_dict
+    db.close()
+    return redirect(url_for('retrieve_users'))
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file.filename != '':
+            uploaded_file.save(uploaded_file.filename)
+        return redirect(url_for('index'))
+    return render_template('index.html')
+
+
+
+# Clarice's
 #  Boreal Services :)
 
 

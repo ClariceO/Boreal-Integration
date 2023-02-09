@@ -3,6 +3,9 @@ from wtforms import widgets, SelectMultipleField
 from datetime import date
 import shelve
 
+# Ana's
+from wtforms import FileField
+
 
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(html_tag='ol', prefix_label=False)
@@ -48,4 +51,15 @@ class CreateServiceForm(Form):
     description = TextAreaField('', [validators.data_required()])  # Description
     service_price = DecimalField('', [validators.data_required()])  # Price
     service_image = StringField('', [validators.data_required()])  # Image Address
+
+
+# Ana's
+class CreateUserForm(Form):
+    first_name = StringField('First Name', [validators.Length(min=1, max=150), validators.DataRequired()])
+    last_name = StringField('Last Name', [validators.Length(min=1, max=150), validators.DataRequired()])
+    gender = SelectField('Name of hairstylist', [validators.DataRequired()], choices=[('', 'Select'), ('A', 'AAA'), ('B', 'BBB'), ('C', "CCC"),("D","DDD")],default='')
+    date = DateField('Select the date of your appointment', [validators.DataRequired()])
+    file = FileField('Upload a photo', [validators.Optional()])
+    remarks = TextAreaField('Remarks', [validators.DataRequired()])
+
 

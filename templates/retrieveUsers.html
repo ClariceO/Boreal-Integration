@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/websitereview.css') }}">
+{% endblock %}
+{% block content %}
+<div class="results">
+    <h1 class="display-4">See your reviews here...</h1>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Name of hairstylist</th>
+                <th>Date</th>
+                <th>Remarks</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users_list %}
+            <tr>
+                <td>{{ user.get_first_name() }}</td>
+                <td>{{ user.get_last_name() }}</td>
+                {% if user.get_gender() == "A" %}
+                <td>AAA</td>
+                {% elif user.get_gender() == "B" %}
+                <td>BBB</td>
+                {% elif user.get_gender() == "C" %}
+                <td>CCC</td>
+                {% elif user.get_gender() == "D" %}
+                <td>DDD</td>
+                {% endif %}
+                <td>{{ user.get_date() }}</td>
+                <td>{{ user.get_remarks() }}</td>
+                
+                <td><a href="/updateUser/{{user.get_user_id()}}" class="btn btn-warning">Edit</a></td>
+                <td>
+                    <form action="{{url_for('delete_user', id=user.get_user_id())}}" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your review?');">
+
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <h2>See other reviews here...</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>User name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Name of hairstylist</th>
+                <th>Date</th>
+                <th>Remarks</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>xxxxx</td>
+                <td>Denzel</td>
+                <td>Pinto</td>
+                <td>CCC</td>
+                <td>2023-01-25</td>
+                <td>Hairstylist was very friendly , and quick in service</td>
+            </tr>
+            <tr>
+                <td>YYYY</td>
+                <td>Amy</td>
+                <td>Tan</td>
+                <td>BBBB</td>
+                <td>2023-02-25</td>
+                <td>Service with a smile , hairstylist gave good advice and was friendly</td>
+            </tr>
+            <tr>
+                <td>ZZZZ</td>
+                <td>John</td>
+                <td>Lim</td>
+                <td>AAAA</td>
+                <td>2022-11-13</td>
+                <td>Service was really fast , prices were as stated in their website</td>
+            </tr>
+            <tr>
+                <td>WWWW</td>
+                <td>Sophia</td>
+                <td>Lee</td>
+                <td>CCC</td>
+                <td>2022-01-12</td>
+                <td>Hairstylist was very friendly , and listened to my requests</td>
+            </tr>
+            <tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
