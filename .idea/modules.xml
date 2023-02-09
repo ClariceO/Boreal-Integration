@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ICAFlaskProjectClarice.iml" filepath="$PROJECT_DIR$/.idea/ICAFlaskProjectClarice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ClariceIntegrations.iml" filepath="$PROJECT_DIR$/.idea/ClariceIntegrations.iml" />
     </modules>
   </component>
 </project>
