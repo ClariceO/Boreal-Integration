@@ -29,7 +29,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
 
 
 
-<div class="container container-table">
+<div style="height:auto;" class="mt-5 container container-table">
 <header>My Appointments</header>
 <div>
 {% if count == 0 %}
@@ -81,7 +81,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
             <td>Mark Chan</td>
             {% elif appointment.get_hairstylist() == 'Harry Cheong' %}
             <td>Harry Cheong</td>
-            {% elif appointment.get_hairstylist() == 'Candy Loh<' %}
+            {% elif appointment.get_hairstylist() == 'Candy Loh' %}
             <td>Candy Loh</td>
             {% elif appointment.get_hairstylist() == 'Ray Tan' %}
             <td>Ray Tan</td>
