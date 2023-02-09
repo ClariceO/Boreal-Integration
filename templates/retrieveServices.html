@@ -12,22 +12,44 @@ a.close{
     padding-top:4px;
 }
 </style>
+<style>
+  #myBtn {
+    width:40px;
+    height:40px;
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99; /* Make sure it does not overlap */
+    border: none;
+    background:none;
+    outline: none;
+    color: rgba(120,0,0,255);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  #myBtn:hover {
+    color: rgb(142,90,65);
+  }
+</style>
 {% endblock %}
 
 {% block content %}
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="material-symbols-outlined">
+		</span><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg></button>
 {% if 'service_created' in session %}
 <div class="alert alert-success alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 {{ session.pop('service_created', None) }} was created.
 </div>
 {% elif 'service_updated' in session %}
 <div class="alert alert-warning alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 {{ session.pop('service_updated', None) }} was updated.
 </div>
 {% elif 'service_deleted' in session %}
 <div class="alert alert-danger alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 {{ session.pop('service_deleted', None) }} was deleted.
 </div>
 {% endif %}
@@ -80,5 +102,29 @@ a.close{
 <!--</div>-->
 
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+<script>
+  // Get to Top button
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () { scroll() };
+
+function scroll() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+{% endblock %}
 {% endblock %}

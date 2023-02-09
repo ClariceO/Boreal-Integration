@@ -15,17 +15,14 @@ a.close{
 {% block content %}
 {% if 'appointment_created' in session %}
 <div class="alert alert-success alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 Appointment {{ session.pop('appointment_created', None) }} was created.
 </div>
 {% elif 'appointment_updated' in session %}
 <div class="alert alert-warning alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 Appointment {{ session.pop('appointment_updated', None) }} was updated.
 </div>
 {% elif 'appointment_deleted' in session %}
 <div class="alert alert-danger alert-dismissible">
-<a type="button" class="close" data-dismiss="alert">&times;</a>
 Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
 </div>
 {% endif %}

@@ -55,7 +55,7 @@
             </div>
          </div>
          <div class="form-outer">
-            <form method="POST" action="/bookingAnAppointment">
+            <form name="booking-form" method="POST" action="/bookingAnAppointment">
                <div class="page slide-page">
                   <div class="title">
                      Choose your hairstylist :
@@ -239,7 +239,7 @@
                      Booking Summary
                   </div>
 
-                   <table class="summary-table" style="text-align:left;">
+                   <table class="summary-table" style="width:400px;text-align:left;">
                        <tr>
                            <th>Hairstylist:</th>
                            <td id="summary1"></td>
@@ -258,7 +258,7 @@
                        </tr>
                        <tr>
                            <th>Remarks:</th>
-                           <td id="summary5"></td>
+                           <td id="summary5" style="width: 110px; word-wrap: break-word;"></td>
                        </tr>
                    </table>
                   <!--insert table summary-->

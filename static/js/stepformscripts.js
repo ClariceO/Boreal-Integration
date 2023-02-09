@@ -102,11 +102,11 @@ function totalPrice() {
 
 
 // Alert
-const c4 = document.getElementById("service-1")
-const c5 = document.getElementById("service-2")
-const c1 = document.getElementById("service-3")
-const c2 = document.getElementById("service-4")
-const c3 = document.getElementById("service-5")
+const c4 = document.getElementById("service-3")
+const c5 = document.getElementById("service-4")
+const c1 = document.getElementById("service-0")
+const c2 = document.getElementById("service-1")
+const c3 = document.getElementById("service-2")
 
 function getCheckboxValue() {
     if (c4.checked == true && c5.checked == true){
@@ -152,7 +152,8 @@ function DateTimeValidation() {
 
 // Checkbox Validation
 function checkboxValidation() {
-    if(c1.checked == false && c2.checked == false && c3.checked == false && c4.checked == false && c5.checked == false) {
+    price = document.getElementById("total").innerText
+    if(price == "0.00") {
         document.getElementById("chk_option_error").style.visibility = "visible";
         script.stop;
         return false;
