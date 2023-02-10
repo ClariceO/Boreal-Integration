@@ -1,16 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap')
 .reviewform {
-    z-index: 1;
-    top: 100px;
     color : rgba(120,0,0,255);
 }
 form.reviewform{
-position : relative;
-width : 50%;
-margin-right:5%;
-margin-left:5%;
-top:150px;
+width : 100%;
 font-family: 'Poppins', sans-serif;
 }
 
@@ -38,11 +32,9 @@ background-color : white ;
 
 }
 .reviews{
-position : relative ;
-margin-left:auto;
-margin-right:auto;
-max-width : 1200px;
 
+margin-left:5%;
+margin-right:5%;
 }
 
 h2{
@@ -134,8 +126,9 @@ ul.thumbnails {
 
 
 .reviewcarousel{
-position : relative ;
-top : 220px;
+
+margin-top:200px;
+width:100%;
 }
 
 .editreviewform{
