@@ -3,6 +3,7 @@ from wtforms import widgets, SelectMultipleField
 from datetime import date
 import shelve
 
+
 # Ana's
 from wtforms import FileField
 
@@ -51,7 +52,6 @@ class CreateServiceForm(Form):
     description = TextAreaField('', [validators.data_required()])  # Description
     service_price = DecimalField('', [validators.data_required()])  # Price
     service_image = StringField('', [validators.data_required()])  # Image Address
-
 
 # Ana's
 class CreateUserForm(Form):

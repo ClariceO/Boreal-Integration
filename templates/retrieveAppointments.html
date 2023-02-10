@@ -2,13 +2,13 @@
 {% block title %}Boreal - My Appointments{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
-<style>
-a.close{
-    color:black;
-    text-decoration:none;
-    padding-top:4px;
-}
-</style>
+<!--<style>-->
+<!--a.close{-->
+<!--    color:black;-->
+<!--    text-decoration:none;-->
+<!--    padding-top:4px;-->
+<!--}-->
+<!--</style>-->
 {% endblock %}
 
 
@@ -93,7 +93,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
       <td><a href="/updateAppointment/{{appointment.get_appointment_id()}}" class="change btn btn-warning">Change</a></td>
       <td>
       <form action="/deleteAppointment/{{appointment.get_appointment_id()}}" method="POST">
-      <input type="submit" value="Delete" class="delete btn btn-danger">
+      <input type="submit" value="Cancel" class="delete btn btn-danger">
 
       </form>
       </td>

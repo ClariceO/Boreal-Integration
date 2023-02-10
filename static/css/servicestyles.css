@@ -9,7 +9,7 @@
 .service h1 {
     font-family: 'Cinzel', sans-serif;
     font-weight:500;
-}
+    color : rgba(120,0,0,255);}
 
 div.container {
   width: 80%;
@@ -67,4 +67,18 @@ div.container {
     color:black;
 }
 
+div.service{
+    width:50%;
+}
+
+.not-blue{
+    background-color:#BAA08D;
+    border-color:#BAA08D;
+    color:#fff;
+}
+
+.not-blue:hover{
+  background: #944949;
+  border-color:#944949;
+}
 

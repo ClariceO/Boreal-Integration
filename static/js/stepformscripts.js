@@ -37,7 +37,7 @@ nextBtnSec.addEventListener("click", function(event){
 nextBtnThird.addEventListener("click", function(event){
   event.preventDefault();
 // Functions below
-//  getCheckboxValue();
+  getCheckboxValue();
   checkboxValidation();
   slidePage.style.marginLeft = "-75%";
   bullet[current - 1].classList.add("active");
@@ -104,9 +104,6 @@ function totalPrice() {
 // Alert
 const c4 = document.getElementById("service-3")
 const c5 = document.getElementById("service-4")
-const c1 = document.getElementById("service-0")
-const c2 = document.getElementById("service-1")
-const c3 = document.getElementById("service-2")
 
 function getCheckboxValue() {
     if (c4.checked == true && c5.checked == true){
