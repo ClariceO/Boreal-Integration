@@ -52,7 +52,7 @@ a.close{
 
 <div class="container pb-5 pt-5 service">
     <h1 id="{{ service.get_service() }}">{{ service.get_service() }}</h1>
-    <img src="{{ service.get_service_image() }}" alt="{{ service.get_service_id() }}">
+    <img src="static/files/{{ service.get_service_image() }}" alt="{{ service.get_service_id() }}">
     <div style="word-wrap: break-word;">{{ service.get_description() }}</div>
     <p>Minimum Price: $<span>{{ service.get_service_price() }}</span></p>
 

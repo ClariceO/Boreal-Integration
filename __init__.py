@@ -1,5 +1,5 @@
 # Clarice's
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import *
 from Forms import CreateBookingForm, CreateServiceForm
 import shelve
 import Appointment, Service
@@ -10,13 +10,24 @@ import User
 
 
 # Clarice's
+from Forms import UploadFileForm
+from werkzeug.utils import secure_filename
+import os
+
+
 app = Flask(__name__)
 app.secret_key = 'HiImTheKey'
-
+app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['UPLOAD_FOLDER'] = 'static/files'
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
+
+
+
 
 
 # Ana's
@@ -122,10 +133,9 @@ def index():
 
 # Clarice's
 #  Boreal Services :)
-
-
-@app.route('/createService', methods=['GET', 'POST'])
-def create_service():
+@app.route('/createService', methods=['GET',"POST"])
+def create_services():
+    form = UploadFileForm()
     create_service_form = CreateServiceForm(request.form)
 
     try:
@@ -149,10 +159,13 @@ def create_service():
         # db.close()
 
         session['service_created'] = service.get_service()
+    if form.validate_on_submit():
+        file = form.file.data # First grab the file
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
 
         return redirect(url_for('retrieve_services'))
-    return render_template('createService.html', form=create_service_form)
 
+    return render_template('createService.html', form=form, create_service_form=create_service_form)
 
 @app.route('/retrieveServices')
 def retrieve_services():

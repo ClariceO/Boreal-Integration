@@ -3,9 +3,15 @@ from wtforms import widgets, SelectMultipleField
 from datetime import date
 import shelve
 
+from flask_wtf import FlaskForm
+from wtforms import FileField, SubmitField
+from wtforms.validators import InputRequired
 
 # Ana's
-from wtforms import FileField
+# from wtforms import FileField
+
+
+
 
 
 class MultiCheckboxField(SelectMultipleField):
@@ -63,3 +69,6 @@ class CreateUserForm(Form):
     remarks = TextAreaField('Remarks', [validators.DataRequired()])
 
 
+class UploadFileForm(FlaskForm):
+    file = FileField("File", validators=[InputRequired()])
+    submit = SubmitField("Create")

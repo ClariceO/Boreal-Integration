@@ -82,3 +82,12 @@ div.service{
   border-color:#944949;
 }
 
+.not-blue:active{
+  background: #944949;
+  border-color:#944949;
+}
+
+.not-blue:focus{
+  background: #944949;
+  border-color:#944949;
+  box-shadow:none;}
