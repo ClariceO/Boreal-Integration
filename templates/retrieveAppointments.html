@@ -1,13 +1,55 @@
 {% extends "base.html" %}
 {% block title %}Boreal - My Appointments{% endblock %}
 {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(document).ready(function (e) {
+
+        function showView(viewName) {
+            $('.view').hide();
+    $('#' + viewName).show();
+    }
+
+        $('[data-launch-view]').click(function (e) {
+            e.preventDefault();
+            var viewName = $(this).attr('data-launch-view');
+            showView(viewName);
+        });
+
+    });
+
+
+$(document).ready(function () {
+    $('body').on('click', '.btn', function(){
+        $(".btn").not(this).removeClass('active');
+        if($(this).hasClass('active')){
+            $('.Resume-click-open').css({'height' : '100px'});
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    });
+
+    $('.btn-Resume-buttons').click(function(e){
+        $('.collapse').collapse('hide');
+    });
+});
+</script>
+
 <style>
 a.close{
     color:black;
     text-decoration:none;
     padding-top:4px;
 }
+
+.hide
+        {
+            display: none;
+        }
 </style>
 {% endblock %}
 
@@ -28,23 +70,35 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
 {% endif %}
 
 
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <button class="not-blue btn mt-5 m-3 active" id="showPage1Btn" data-launch-view="page1">Pending</button>
+  </li>
+  <li class="nav-item">
+    <button class="not-blue btn mt-5 m-3" id="showPage2Btn" data-launch-view="page2">Completed</button>
+  </li>
 
-<div style="height:auto;" class="mt-5 container container-table">
-<header>My Appointments</header>
-<div>
-{% if count == 0 %}
-<p>There are no users.</p>
-{% elif count == 1 %}
-<p>You have 1 appointment.</p>
-{% else %}
-<p>You have {{ count }} appointments.</p>
-{% endif %}
-</div>
+</ul>
+
+
+<div id="lotOfPages">
+
+    <div class="view" id="page1">
+           <div style="height:auto;" class="mt-5 container container-table">
+    <header>My Appointments</header>
+    <div>
+    {% if count == 0 %}
+    <p>There are no appointments.</p>
+    {% elif count == 1 %}
+    <p>You have 1 appointment.</p>
+    {% else %}
+    <p>You have {{ count }} appointments.</p>
+    {% endif %}
+    </div>
 <div>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Date</th>
         <th>Time</th>
         <th>Services</th>
@@ -56,7 +110,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
     <tbody>
      {% for appointment in appointments_list %}
       <tr>
-      <td>{{ appointment.get_appointment_id() }}</td>
+    
       <td>{{ appointment.get_date() }}</td>
       <td>{{ appointment.get_time() }}</td>
         <td>
@@ -103,4 +157,25 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
   </table>
 </div>
 </div>
+    </div>
+
+
+    <div class="view hide" id="page2">
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

@@ -178,6 +178,8 @@ def retrieve_services():
 @app.route('/updateService/<int:_id>/', methods=['GET', 'POST'])
 def update_service(_id):
     update_service_form = CreateServiceForm(request.form)
+    form = UploadFileForm()
+
     if request.method == 'POST' and update_service_form.validate():
         services_dict = {}
         db = shelve.open('service.db', 'w')
@@ -203,7 +205,13 @@ def update_service(_id):
         update_service_form.description.data = service.get_description()
         update_service_form.service_price.data = service.get_service_price()
         update_service_form.service_image.data = service.get_service_image()
-        return render_template('updateService.html', form=update_service_form)
+
+    return render_template('updateService.html', form=form, update_service_form=update_service_form)
+    if form.validate_on_submit():
+        file = form.file.data # First grab the file
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
+
+        return render_template('updateService.html', form=form, update_service_form=update_service_form)
 
 
 @app.route('/deleteService/<int:_id>/', methods=['POST'])
