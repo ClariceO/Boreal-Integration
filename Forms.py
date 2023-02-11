@@ -46,7 +46,7 @@ class CreateBookingForm(Form):
     # print(choices_list)
     db.close()
 
-    services = MultiCheckboxField('', name="service", choices=choices_list, coerce=int)
+    services = MultiCheckboxField('', name="service", choices=choices_list, coerce=str)
 
     remarks = TextAreaField('', [validators.Optional('')])
 

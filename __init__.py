@@ -24,12 +24,6 @@ app.config['UPLOAD_FOLDER'] = 'static/files'
 def home():
     return render_template('home.html')
 
-
-
-
-
-
-
 # Ana's
 
 
@@ -191,6 +185,7 @@ def update_service(_id):
 
         service = services_dict.get(_id)
         service.set_description(update_service_form.description.data)
+        service.set_service(update_service_form.service.data)
         service.set_service_price(update_service_form.service_price.data)
         service.set_service_image(update_service_form.service_image.data)
 
@@ -286,7 +281,17 @@ def retrieve_appointments():
 @app.route('/updateAppointment/<int:_id>/', methods=['GET', 'POST'])
 def update_appointment(_id):
     update_appointment_form = CreateBookingForm(request.form)
-    if request.method == 'POST' and update_appointment_form.validate():
+    services_list = []
+    services_dict = {}
+    db_services = shelve.open('service.db', 'r')
+    services_dict = db_services['Services']
+    db_services.close()
+
+    for key in services_dict:
+        service = services_dict.get(key)
+        services_list.append(service)
+
+    if request.method == 'POST':
         appointments_dict = {}
         db = shelve.open('appointment.db', 'w')
         appointments_dict = db['Appointments']
@@ -305,6 +310,7 @@ def update_appointment(_id):
         session['appointment_updated'] = appointment.get_appointment_id()
         db.close()
 
+
         return redirect(url_for('retrieve_appointments'))
     else:
         appointments_dict = {}
@@ -322,7 +328,7 @@ def update_appointment(_id):
         update_appointment_form.email.data = appointment.get_email()
         update_appointment_form.remarks.data = appointment.get_remarks()
 
-        return render_template('updateAppointment.html', form=update_appointment_form)
+        return render_template('updateAppointment.html', services_list=services_list, form=update_appointment_form)
 
 
 @app.route('/deleteAppointment/<int:_id>/', methods=['POST'])

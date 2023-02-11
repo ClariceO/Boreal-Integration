@@ -64,5 +64,3 @@ class Appointment:
 
     def set_remarks(self, remarks):
         self.__remarks = remarks
-
-

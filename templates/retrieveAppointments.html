@@ -2,13 +2,13 @@
 {% block title %}Boreal - My Appointments{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
-<!--<style>-->
-<!--a.close{-->
-<!--    color:black;-->
-<!--    text-decoration:none;-->
-<!--    padding-top:4px;-->
-<!--}-->
-<!--</style>-->
+<style>
+a.close{
+    color:black;
+    text-decoration:none;
+    padding-top:4px;
+}
+</style>
 {% endblock %}
 
 
@@ -62,15 +62,15 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
         <td>
           {% for price in appointment.get_services() %}
 
-          {% if price == 50 %}
+          {% if price == '50.00' %}
             <p>Classic</p>
-            {% elif price == 250 %}
+            {% elif price == '250.00' %}
             <p>Treatment</p>
-            {% elif price == 120 %}
+            {% elif price == '120.00' %}
             <p>Color</p>
-            {% elif price == 150 %}
+            {% elif price == '150.00' %}
             <p>Perm</p>
-            {% elif price == 180 %}
+            {% elif price == '180.00' %}
             <p>Straighten</p>
           {% endif %}
 
@@ -93,7 +93,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
       <td><a href="/updateAppointment/{{appointment.get_appointment_id()}}" class="change btn btn-warning">Change</a></td>
       <td>
       <form action="/deleteAppointment/{{appointment.get_appointment_id()}}" method="POST">
-      <input type="submit" value="Cancel" class="delete btn btn-danger">
+      <input type="submit" value="Delete" class="delete btn btn-danger">
 
       </form>
       </td>
