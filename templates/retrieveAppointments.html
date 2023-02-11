@@ -51,6 +51,12 @@ a.close{
             display: none;
         }
 </style>
+<style>
+    body {
+    background-image: url('../static/img/bg.jpg');
+    background-size:cover;
+    }
+</style>
 {% endblock %}
 
 
@@ -110,7 +116,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
     <tbody>
      {% for appointment in appointments_list %}
       <tr>
-    
+
       <td>{{ appointment.get_date() }}</td>
       <td>{{ appointment.get_time() }}</td>
         <td>

@@ -2,7 +2,15 @@
 {% block title %}Boreal- Booking System{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
+<style>
+    body {
+    background-image: url('../static/img/background.jpg');
+    background-size:cover;
+    }
+</style>
 {% endblock %}
+
+
 {% block content %}
 {% from "includes/_formHelper.html" import render_field %}
 <div class="mt-5 mb-5 container">
