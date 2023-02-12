@@ -3,11 +3,12 @@
 {% block title %}Boreal - Update Services{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 {% endblock %}
 {% block content %}
 {% from "includes/_formHelper.html" import render_field %}
- <div class="text-center" style="margin-left:auto; width:50% ;margin-right:auto;">
-<h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Create a new service</h1>
+ <div class="" style="margin-left:auto; width:50% ;margin-right:auto;">
+<h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Update Service</h1>
 <form method="POST" action="">
 <div class="form-group">
 {{ render_field(update_service_form.service, placeholder="Service Type", class="form-control") }}
@@ -18,16 +19,12 @@
 <div class="form-group">
 {{ render_field(update_service_form.service_price, class="form-control", placeholder="Price") }}
 </div>
-    <div class="mt-4 form-group">
-{{form.hidden_tag()}}
-    {{form.file(class="p-2 not-blue btn")}}
-    </div>
 <div class="form-group">
 {{ render_field(update_service_form.service_image, class="form-control", placeholder="Image URL") }}
 </div>
     &nbsp;<br>
-    &nbsp;<br>
-{{form.submit( class="not-blue btn") }}
+
+{{form.submit( value="Update Service", class="not-blue btn float-right ") }}
 </form>
 </div>
 {% endblock %}

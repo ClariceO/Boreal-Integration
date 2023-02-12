@@ -3,14 +3,15 @@
 {% block title %}Boreal - Edit Review{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 {% endblock %}
 
 {% block content %}
 {% from "includes/_formhelper.html" import render_field %}
- <div class="text-center" style="margin-left:auto; width:50% ;margin-right:auto;">
+ <div class="" style="margin-left:auto; width:50% ;margin-right:auto;">
 <h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Edit your Review</h1>
-<form class="reviewform" method="POST" action="" enctype='multipart/form-data' >
+<form class="reviewform" method="POST" action=""  >
 <div class="form-group">
 {{ render_field(create_user_form.first_name, class="form-control", placeholder="First Name") }}
 </div>
@@ -27,11 +28,6 @@
 {{ render_field(create_user_form.date, class="form-control", style="list-style-type:none") }}
 </div>
 
-     <div class="mt-4 form-group">
-{{form.hidden_tag()}}
-        {{form.file(class="p-2 not-blue btn")}}
-</div>
-
     <div class="form-group">
 {{ render_field(create_user_form.file, class="form-control", placeholder="Copy your image name here") }}
 </div>
@@ -42,8 +38,8 @@
 </div>
 </div>
     <br>
-    &nbsp;<br>
-    <input id="submit" class="not-blue btn" name="submit" type="submit" value="Submit review">
+
+    <input id="submit" class="not-blue btn float-right" name="submit" type="submit" value="Submit review">
 
 </form>
 </div>

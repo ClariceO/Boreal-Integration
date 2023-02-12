@@ -49,7 +49,7 @@ def create_user():
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
 
         return redirect(url_for('retrieve_users'))
-    return render_template('createUser.html',form = form , create_user_form=create_user_form)
+    return render_template('createUser.html', form=form, create_user_form=create_user_form)
 
 
 @app.route('/websitereview')
@@ -203,12 +203,6 @@ def update_service(_id):
         update_service_form.description.data = service.get_description()
         update_service_form.service_price.data = service.get_service_price()
         update_service_form.service_image.data = service.get_service_image()
-
-    return render_template('updateService.html', form=form, update_service_form=update_service_form)
-    if form.validate_on_submit():
-        file = form.file.data # First grab the file
-        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
-
         return render_template('updateService.html', form=form, update_service_form=update_service_form)
 
 

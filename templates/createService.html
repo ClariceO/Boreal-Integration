@@ -4,6 +4,7 @@
 {% block css %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 {% endblock %}
 {% block content %}
@@ -11,7 +12,7 @@
 
 
 {% from "includes/_formHelper.html" import render_field %}
- <div class="text-center" style="margin-left:auto; width:50% ;margin-right:auto;">
+ <div class="" style="margin-left:auto; width:50% ;margin-right:auto;">
 <h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Create a new service</h1>
 <form method="POST" enctype='multipart/form-data'>
 <div class="form-group">
@@ -26,7 +27,7 @@
 
     <div class="mt-4 form-group">
 {{form.hidden_tag()}}
-    {{form.file(class="p-2 not-blue btn")}}
+    {{form.file(class="p-2 not-blue btn w-100")}}
     </div>
 
 <div class="form-group">
@@ -35,8 +36,8 @@
 </div>
 
     &nbsp;<br>
-    &nbsp;<br>
-{{form.submit( class="not-blue btn") }}
+
+{{form.submit( value="Create Service", class="not-blue btn float-right") }}
 
 </form>
 </div>
