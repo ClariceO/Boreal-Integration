@@ -1,0 +1,85 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+    },
+    {
+      "tag": "services",
+      "patterns": [
+        "What services do Boreal have?",
+        "Services available?",
+        "What services do Boreal provide?",
+        "Services?"
+      ],
+      "responses": [
+        "We have haircut, styling and many more",
+        "We provide services such as haircut, styling and dyeing"
+      ]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "Where is Boreal located?",
+        "Where is Boreal?",
+        "Boreal location?",
+        "Location?"
+      ],
+      "responses": [
+        "180 Ang Mo Kio Ave 8, Singapore 569830",
+        "We are located at 180 Ang Mo Kio Ave 8, Singapore 569830"
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Help.",
+        "",
+        "When do I get my delivery?"
+      ],
+      "responses": [
+        "Delivery takes 2-4 days",
+        "Shipping takes 2-4 days"
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Tell me something funny!",
+        "Do you know a joke?"
+      ],
+      "responses": [
+        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+        "What did the buffalo say when his son left for college? Bison."
+      ]
+    }
+  ]
+}

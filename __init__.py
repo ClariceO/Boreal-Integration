@@ -2,9 +2,10 @@
 from flask import *
 from Forms import *
 import shelve
-import Appointment, Service, User
+import Appointment, Service, User, Hairstylist
 from werkzeug.utils import secure_filename
 import os
+from chat import get_response
 
 
 app = Flask(__name__)
@@ -17,6 +18,124 @@ app.config['UPLOAD_FOLDER'] = 'static/files'
 def home():
     return render_template('home.html')
 
+
+# Asykin
+@app.route('/new')
+def contact_hairstylists():
+    return render_template('new.html')
+
+
+@app.route('/chat')
+def chat():
+    hairstylist_dict = {}
+    db = shelve.open('hairstylist.db', 'r')
+    hairstylist_dict = db['Hairstylist']
+    db.close()
+
+    hairstylist_list = []
+    for key in hairstylist_dict:
+        hairstylist = hairstylist_dict.get(key)
+        hairstylist_list.append(hairstylist)
+
+    return render_template('chat.html',count=len(hairstylist_list), hairstylist_list=hairstylist_list)
+
+
+@app.route('/chatbot')
+def bot():
+    return render_template('chatbot.html')
+
+
+@app.route('/createchat', methods=['GET', 'POST'])
+def create_hairstylist():
+    create_hairstylist_form = CreateHairstylistForm(request.form)
+    if request.method == 'POST' and create_hairstylist_form.validate():
+        hairstylist_dict = {}
+        db = shelve.open('hairstylist.db', 'c')
+
+        try:
+            hairstylist_dict = db['Hairstylist']
+        except:
+            print("Error in retrieving Hairstylist from hairstylist.db.")
+
+        hairstylist = Hairstylist.Hairstylist(create_hairstylist_form.first_name.data, create_hairstylist_form.last_name.data,
+                         create_hairstylist_form.hairstylists.data, create_hairstylist_form.email.data, create_hairstylist_form.remarks.data)
+        hairstylist_dict[hairstylist.get_hairstylist_id()] = hairstylist
+        db['Hairstylist'] = hairstylist_dict
+
+        db.close()
+        return redirect(url_for('chat'))
+    return render_template('createchat.html', form=create_hairstylist_form)
+
+
+@app.route('/retrievechat')
+def retrieve_hairstylist():
+    hairstylist_dict = {}
+    db = shelve.open('hairstylist.db', 'r')
+    hairstylist_dict = db['Hairstylist']
+    db.close()
+
+    hairstylist_list = []
+    for key in hairstylist_dict:
+        hairstylist = hairstylist_dict.get(key)
+        hairstylist_list.append(hairstylist)
+
+    return render_template('retrievechat.html',count=len(hairstylist_list), hairstylist_list=hairstylist_list)
+
+
+@app.route('/updatechat/<int:id>/', methods=['GET', 'POST'])
+def update_hairstylist(id):
+    update_hairstylist_form = CreateHairstylistForm(request.form)
+    if request.method == 'POST' and update_hairstylist_form.validate():
+        hairstylist_dict = {}
+        db = shelve.open('hairstylist.db', 'w')
+        hairstylist_dict = db['Hairstylist']
+        hairstylist = hairstylist_dict.get(id)
+        hairstylist.set_first_name(update_hairstylist_form.first_name.data)
+        hairstylist.set_last_name(update_hairstylist_form.last_name.data)
+        hairstylist.set_email(update_hairstylist_form.email.data)
+        hairstylist.set_hairstylists(update_hairstylist_form.hairstylists.data)
+        hairstylist.set_remarks(update_hairstylist_form.remarks.data)
+        db['Hairstylist'] = hairstylist_dict
+        db.close()
+
+        return redirect(url_for('retrieve_hairstylist'))
+    else:
+        hairstylist_dict = {}
+        db = shelve.open('hairstylist.db', 'r')
+        hairstylist_dict = db['Hairstylist']
+        db.close()
+        hairstylist = hairstylist_dict.get(id)
+        update_hairstylist_form.first_name.data = hairstylist.get_first_name()
+        update_hairstylist_form.last_name.data = hairstylist.get_last_name()
+        update_hairstylist_form.email.data = hairstylist.get_email()
+        update_hairstylist_form.hairstylists.data = hairstylist.get_hairstylists()
+        update_hairstylist_form.remarks.data = hairstylist.get_remarks()
+
+        return render_template('updatechat.html', form=update_hairstylist_form)
+
+
+@app.route('/deleteUser/<int:id>', methods=['POST'])
+def delete_hairstylist(id):
+    hairstylist_dict = {}
+    db = shelve.open('hairstylist.db', 'w')
+    hairstylist_dict = db['Hairstylist']
+    hairstylist_dict.pop(id)
+    db['Hairstylist'] = hairstylist_dict
+    db.close()
+    return redirect(url_for('retrieve_hairstylist'))
+
+
+@app.route('/chatbot', methods=['GET'])
+def index_get():
+    return render_template("chatbot.html")
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    text = request.get_json().get("message")
+    response = get_response(text)
+    message = {"answer": response}
+    return jsonify(message)
 
 # Ana's
 

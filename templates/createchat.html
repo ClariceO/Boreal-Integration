@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Confirm Details{% endblock %}
+{% set active_page = "link_three" %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+{% endblock %}
+
+{% block content %}
+{% from "includes/_formhelper.html" import render_field %}
+ <div class="" style="margin-left:auto; width:50% ;margin-right:auto;">
+<h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Confirmation of Details</h1>
+<form method="POST" action="">
+<div class="form-group">
+{{ render_field(form.first_name, class="form-control", placeholder="First Name") }}
+</div>
+<div class="form-group">
+{{ render_field(form.last_name, class="form-control", placeholder="Last Name") }}
+</div>
+<div class="form-group">
+{{ render_field(form.email, class="form-control", placeholder="Email") }}
+</div>
+<div class="form-group">
+{{ render_field(form.hairstylists, class="form-control", style="list-style-type:none") }}
+</div>
+<div id="prof">
+<div class="form-group">
+{{ render_field(form.remarks, class="form-control", placeholder="Remarks") }}
+</div>
+</div>
+<input type="submit" value="Submit" class="btn not-blue float-right"/>
+</form>
+{% endblock %}

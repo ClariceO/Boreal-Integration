@@ -3,6 +3,7 @@ from datetime import date
 import shelve
 from flask_wtf import FlaskForm
 from wtforms.validators import InputRequired
+from wtforms.fields import EmailField
 
 
 class MultiCheckboxField(SelectMultipleField):
@@ -15,8 +16,6 @@ class CreateBookingForm(Form):
     name = StringField('', render_kw={"value": "Bob", "disabled": "disabled"})
     contact = IntegerField('', render_kw={"value": "81236458", "disabled": "disabled"})
     email = EmailField('', render_kw={"value": "bob@gmail.com", "disabled": "disabled"})
-
-
     hairstylist = SelectField('', choices=[('', '--Please select your hairstylist--'), ('Julie Watson', 'Julie Watson'), ('Marc McKnew', 'Marc McKnew'), ('Jet Atkin', 'Jet Atkin'),('Jose Eber', 'Jose Eber')], default='')
     date = DateField('', default=date.today())
     time = TimeField('')
@@ -67,10 +66,19 @@ class CreateUserForm(Form):
     file = StringField('', [validators.DataRequired() , ])
     remarks = TextAreaField('', [validators.DataRequired()])
 
+
 class CreateReviewForm(Form):
     helpful = RadioField('Was our website helpful ?', choices=(("Very helpful","Very helpful"),("Helpful", "Helpful"),("Not helpful","Not helpful")))
     convenience = RadioField("Was our website easy to use ?", choices = (("Very easy","Very Easy"), ("Easy" , "Easy"), ("Not easy","Not Easy")))
     feedback = TextAreaField('Feedback : ',[ validators.data_required()])
 
 
+# Asykin
+
+class CreateHairstylistForm(Form):
+    first_name = StringField('', [validators.Length(min=1, max=150), validators.DataRequired()])
+    last_name = StringField('', [validators.Length(min=1, max=150), validators.DataRequired()])
+    hairstylists = SelectField('', [validators.DataRequired()], choices=[('', 'Select Hairstylist'), ('JW', 'Julie Watson'), ('MM', 'Marc McKnew'),('JA', 'Jet Atkin'), ('JE', 'Jose Eber') ], default='')
+    email = EmailField('', [validators.Email(), validators.DataRequired()])
+    remarks = TextAreaField('', [validators.Optional()])
 

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Contact Hairstylist{% endblock %}
+{% set active_page = "link_three" %}
+{% block css %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/new.css">
+    {% endblock %}
+
+{% block content %}
+
+<body>
+
+<div class="text-center container-header">
+    <h1 class="w3-xxxlarge"><b>Contact your dream hairstylists!</b></h1>
+</div>
+
+<div class = "container">
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='img/profile1.jpg') }}" alt="profile_img">
+        </div>
+        <p class="name">Julie Watson</p>
+        <p>Junior Stylist</p>
+        <p>Specialize in treating hair without using chemicals for all types of hair.She also specializes in different style options such as braids, twists, and blowouts provide versatility a lot of clients desire.</p>
+        <div class="socials">
+            <button type="button" onclick="confirmation()">Lets get started!</button>
+            <script>
+            function confirmation() {
+            var answer = confirm("You have picked Julie Watson\nDo you want to continue?")
+            if (answer){
+
+            window.location = "createchat";// goes to confirmsubmit.jsp
+            return true;
+            }
+            else{
+            //should remain in index.jsp but here also confirmsubmit.jsp is opening
+            return false;
+            }
+           }
+            </script>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='img/profile2.jpg') }}" alt="profile_img">
+        </div>
+        <p class="name">Marc McKnew</p>
+        <p>Junior Colorist</p>
+        <p>Specialize in altering the hair color of their clients.He has extensive knowledge of the technicalities of hair color, depth, and tone and works with a range of techniques.</p>
+        <div class="socials">
+            <button type="button" onclick="submit()">Lets get started!</button>
+            <script>
+            function submit() {
+            var answer = confirm("You have picked Marc McKnew\nDo you want to continue?")
+            if (answer){
+
+            window.location = "createchat";// goes to confirmsubmit.jsp
+            return true;
+            }
+            else{
+            //should remain in index.jsp but here also confirmsubmit.jsp is opening
+            return false;
+            }
+           }
+            </script>
+        </div>
+    </div>
+
+<div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='img/profile3.jpg') }}" alt="profile_img">
+        </div>
+        <p class="name">Jet Atkin</p>
+        <p>Stylists</p>
+        <p>Specialize in cutting and styling clients hair. She recommends the best styles for clients simply by communicating and understanding their exact needs.</p>
+        <div class="socials">
+            <button type="button" onclick="sub()">Lets get started!</button>
+            <script>
+            function sub() {
+            var answer = confirm("You have picked Jet Atkin\nDo you want to continue?")
+            if (answer){
+
+            window.location = "createchat";// goes to confirmsubmit.jsp
+            return true;
+            }
+            else{
+            //should remain in index.jsp but here also confirmsubmit.jsp is opening
+            return false;
+            }
+           }
+            </script>
+        </div>
+    </div>
+
+<div class="card">
+        <div class="card-image">
+            <img src="{{ url_for('static', filename='img/profile4.jpg') }}" alt="profile_img">
+        </div>
+        <p class="name">Jose Eber</p>
+        <p>Senior stylist</p>
+        <p>Skilled in all aspects of hairdressing; cutting, styling, colouring, barbering, highlights, extensions, hair up, foils and many more.</p>
+        <div class="socials">
+            <button type="button" onclick="con()">Lets get started!</button>
+            <script>
+            function con() {
+            var answer = confirm("You have picked Jose Eber\nDo you want to continue?")
+            if (answer){
+
+            window.location = "createchat";// goes to confirmsubmit.jsp
+            return true;
+            }
+            else{
+            //should remain in index.jsp but here also confirmsubmit.jsp is opening
+            return false;
+            }
+           }
+            </script>
+        </div>
+    </div>
+</div>
+
+</body>
+{% endblock %}

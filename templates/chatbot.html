@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Chatbot{% endblock %}
+{% set active_page = "link_six" %}
+{% block content %}
+<html lang="en">
+  <head>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/chatbot.css">
+  </head>
+<!------ Include the above in your HEAD tag ---------->
+<body>
+
+<div class="text-center container-header">
+    <h1 class="w3-xxxlarge"><b>Welcome to our chatbot!</b></h1>
+    <h3>Please press the chat icon...</h3>
+</div>
+
+
+
+<div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                    <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                </div>
+            </div>
+            <div class="chatbox__messages">
+                <div></div>
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" placeholder="Write a message...">
+                <button class="chatbox__send--footer send__button">Send</button>
+            </div>
+        </div>
+        <div class="chatbox__button">
+            <button><img src="{{ url_for('static', filename='img/chatbox-icon.svg') }}" /></button>
+        </div>
+    </div>
+</div>
+
+    <script type = text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson }};
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+{% endblock %}

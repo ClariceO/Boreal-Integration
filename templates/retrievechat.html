@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Boreal - Chat Records{% endblock %}
+{% set active_page = "link_three" %}
+{% block css %}
+<link rel="stylesheet" href="./static/css/retrieve.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/websitereview.css') }}">
+
+{% endblock %}
+{% block content %}
+<div class="pt-5 mt-5 reviews">
+<h2 class="pb-2 border-bottom" style="font-family: 'Poppins', sans-serif;
+ color: rgba(120,0,0,255);">Based on your records...</h2>
+<div>
+{% if count == 0 %}
+<p>There are no records.</p>
+{% elif count == 1 %}
+<p>There is 1 record.</p>
+{% else %}
+<p>There are {{ count }} records.</p>
+{% endif %}
+</div>
+<table class="table table-striped">
+<thead  style="background: #C4A484;">
+<tr>
+<th>User ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Hairstylists</th>
+<th>Remarks</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+{% for hairstylist in hairstylist_list %}
+<tr>
+<td>{{ hairstylist.get_hairstylist_id() }}</td>
+<td>{{ hairstylist.get_first_name() }}</td>
+<td>{{ hairstylist.get_last_name() }}</td>
+    <td>{{ hairstylist.get_email() }}</td>
+<td>{{ hairstylist.get_hairstylists() }}</td>
+<td>{{ hairstylist.get_remarks() }}</td>
+<td><a href="/updatechat/{{hairstylist.get_hairstylist_id()}}" class="btn not-blue">Update</a></td>
+    <td><a href="/chat" class="btn btn-secondary">Chat</a></td>
+    <td>
+<form action="{{url_for('delete_hairstylist', id=hairstylist.get_hairstylist_id())}}" method="POST">
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal_{{hairstylist.get_hairstylist_id()}}">
+Delete
+</button>
+<!-- The Modal -->
+<div class="modal" id="myModal_{{hairstylist.get_hairstylist_id()}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Delete Confirmation</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+        <!-- Modal body -->
+            <div class="modal-body">
+            Are you sure you want to delete chat with {{ hairstylist.get_hairstylists() }}?
+            </div>
+        <!-- Modal footer -->
+            <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</td>
+    <td>
+    <div class="parent">
+        <div class="child">
+            <input type="checkbox" checked="checked" id="favorite" name="favorite-checkbox" value="favorite-button">
+                <label for="favorite" class="container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <div class="action">
+                        <span class="option-1">Add to Favorites</span>
+                        <span class="option-2">Favourited!</span>
+                    </div>
+                </label>
+        </div>
+  </div>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

@@ -47,9 +47,9 @@
                 <span class="item dropbtn">Contact Hairstylist</span>
             </a>
             <div class="dropdown-content" id="cont3">
-                <a href="#">Link 7</a>
-                <a href="#">Link 8</a>
-                <a href="#">Link 9</a>
+                <a href="/new">Contact Hairstylists</a>
+                <a href="/retrievechat">Previous Hairstylists</a>
+
             </div>
             </div>
         </li>
@@ -88,32 +88,25 @@
         <hr style="width: 90%; margin: 5px auto;  ">
 
         <!--FAQ -->
-        <li class="{{ 'active' if active_page == 'link_six' else '' }}">
+        <li class="{{ 'active' if active_page == 'link_seven' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-chart-line"></i></span>
-                <span class="item dropbtn">FAQ</span>
+                <span class="item dropbtn" id="cont8" >FAQ</span>
             </a>
-            <!-- <div class="dropdown-content">
-                <a style="color: black" href="#">Link 16</a>
-                <a style="color: black" href="#">Link 2</a>
-                <a style="color: black" href="#">Link 3</a>
-            </div> -->
             </div>
         </li>
 
     <!--Help -->
-        <li class="{{ 'active' if active_page == 'link_seven' else '' }}">
+        <li class="{{ 'active' if active_page == 'link_six' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-user-shield"></i></span>
                 <span class="item dropbtn">Help</span>
             </a>
-            <!-- <div class="dropdown-content">
-                <a style="color: black" href="#">Link 1</a>
-                <a style="color: black" href="#">Link 2</a>
-                <a style="color: black" href="#">Link 3</a>
-            </div> -->
+            <div class="dropdown-content" id="cont7" >
+                <a href="/chatbot" >Chatbot</a>
+            </div>
             </div>
         </li>
 
