@@ -11,7 +11,7 @@
     <div>
     <ul>
     <!--Accounts and Settings -->
-        <li class="active">
+        <li class="{{ 'active' if active_page == 'link_one' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-home"></i></span>
@@ -25,7 +25,7 @@
         </li>
 
     <!--Services and Bookings -->
-        <li>
+        <li class="{{ 'active' if active_page == 'link_two' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-calendar-check"></i></span>
@@ -40,7 +40,7 @@
         </li>
 
     <!--Contact Hairstylists -->
-        <li>
+        <li class="{{ 'active' if active_page == 'link_three' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-user-friends"></i></span>
@@ -55,7 +55,7 @@
         </li>
 
     <!--Payment -->
-        <li>
+        <li class="{{ 'active' if active_page == 'link_four' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-database"></i></span>
@@ -70,7 +70,7 @@
         </li>
 
     <!--Review -->
-        <li>
+        <li class="{{ 'active' if active_page == 'link_five' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
@@ -86,8 +86,38 @@
     <!--HR Tag -->
         <hr style="width: 90%; margin: 5px auto;  ">
 
+        <!--FAQ -->
+        <li class="{{ 'active' if active_page == 'link_six' else '' }}">
+            <div class="dropdown">
+            <a href="#">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="item dropbtn">FAQ</span>
+            </a>
+            <!-- <div class="dropdown-content">
+                <a style="color: black" href="#">Link 16</a>
+                <a style="color: black" href="#">Link 2</a>
+                <a style="color: black" href="#">Link 3</a>
+            </div> -->
+            </div>
+        </li>
+
+    <!--Help -->
+        <li class="{{ 'active' if active_page == 'link_seven' else '' }}">
+            <div class="dropdown">
+            <a href="#">
+                <span class="icon"><i class="fas fa-user-shield"></i></span>
+                <span class="item dropbtn">Help</span>
+            </a>
+            <!-- <div class="dropdown-content">
+                <a style="color: black" href="#">Link 1</a>
+                <a style="color: black" href="#">Link 2</a>
+                <a style="color: black" href="#">Link 3</a>
+            </div> -->
+            </div>
+        </li>
+
         <!--Admin Settings -->
-        <li>
+        <li class="{{ 'active' if active_page == 'link_eight' else '' }}">
             <div class="dropdown">
             <a href="#">
                 <span class="icon"><i class="fas fa-database"></i></span>
@@ -98,9 +128,24 @@
             </div>
             </div>
         </li>
-
     </ul>
     </div>
 </div>
 </div>
+<script>
+    $(document).ready(function () {
+    $('body').on('click', '.buttonss', function(){
+        $(".buttonss").not(this).removeClass('active');
+        if($(this).hasClass('active')){
+            $('.Resume-click-open').css({'height' : '100px'});
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    });
 
+    $('.btn-Resume-buttons').click(function(e){
+        $('.collapse').collapse('hide');
+    });
+});
+</script>

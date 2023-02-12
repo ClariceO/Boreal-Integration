@@ -1,7 +1,15 @@
 {% extends "base.html" %}
+{% set active_page = "link_two" %}
 {% block title %}Boreal - Update Appointment{% endblock %}
 {% block css %}
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
+<style>
+    body {
+    background-image: url('../static/img/background.jpg');
+    background-size:cover;
+    }
+</style>
 {% endblock %}
 {% block content %}
 {% from "includes/_formHelper.html" import render_field %}
@@ -236,7 +244,7 @@
                        </tr>
                        <tr>
                            <th>Remarks:</th>
-                           <td id="summary5"style="width: 110px; word-wrap: break-word;"></td>
+                           <td id="summary5" style="width: 110px; word-wrap: break-word;"></td>
                        </tr>
                    </table>
                   <!--insert table summary-->

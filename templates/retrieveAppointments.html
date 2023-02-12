@@ -1,43 +1,10 @@
 {% extends "base.html" %}
+{% set active_page = "link_two" %}
 {% block title %}Boreal - My Appointments{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/servicestyles.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stepformstyles.css') }}">
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-$(document).ready(function (e) {
-
-        function showView(viewName) {
-            $('.view').hide();
-    $('#' + viewName).show();
-    }
-
-        $('[data-launch-view]').click(function (e) {
-            e.preventDefault();
-            var viewName = $(this).attr('data-launch-view');
-            showView(viewName);
-        });
-
-    });
-
-
-$(document).ready(function () {
-    $('body').on('click', '.btn', function(){
-        $(".btn").not(this).removeClass('active');
-        if($(this).hasClass('active')){
-            $('.Resume-click-open').css({'height' : '100px'});
-            $(this).removeClass('active');
-        }else{
-            $(this).addClass('active');
-        }
-    });
-
-    $('.btn-Resume-buttons').click(function(e){
-        $('.collapse').collapse('hide');
-    });
-});
-</script>
 
 <style>
 a.close{
@@ -90,7 +57,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
 <div id="lotOfPages">
 
     <div class="view" id="page1">
-           <div style="height:auto;" class="mt-5 container container-table">
+           <div style="height:auto;" class="mt-5 mb-5 container container-table">
     <header>My Appointments</header>
     <div>
     {% if count == 0 %}
@@ -137,14 +104,14 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
           {% endfor %}
           </td>
 
-          {% if appointment.get_hairstylist() == 'Mark Chan' %}
-            <td>Mark Chan</td>
-            {% elif appointment.get_hairstylist() == 'Harry Cheong' %}
-            <td>Harry Cheong</td>
-            {% elif appointment.get_hairstylist() == 'Candy Loh' %}
-            <td>Candy Loh</td>
-            {% elif appointment.get_hairstylist() == 'Ray Tan' %}
-            <td>Ray Tan</td>
+          {% if appointment.get_hairstylist() == 'Julie Watson' %}
+            <td>Julie Watson</td>
+            {% elif appointment.get_hairstylist() == 'Marc McKnew' %}
+            <td>Marc McKnew</td>
+            {% elif appointment.get_hairstylist() == 'Jet Atkin' %}
+            <td>Jet Atkin</td>
+            {% elif appointment.get_hairstylist() == 'Jose Eber' %}
+            <td>Jose Eber</td>
           {% endif %}
 
       <td>{{ appointment.get_remarks() }}</td>
@@ -183,5 +150,50 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
 
 
 
+
+{% endblock %}
+{% block scripts %}
+
+    <!--Sweet Alert Codes-->
+    <!--JQuery CDN-->
+    <!--Sweet Alert CDN-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script src="{{ url_for('static', filename='js/stepformscripts.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(document).ready(function (e) {
+
+        function showView(viewName) {
+            $('.view').hide();
+    $('#' + viewName).show();
+    }
+
+        $('[data-launch-view]').click(function (e) {
+            e.preventDefault();
+            var viewName = $(this).attr('data-launch-view');
+            showView(viewName);
+        });
+
+    });
+
+
+$(document).ready(function () {
+    $('body').on('click', '.btn', function(){
+        $(".btn").not(this).removeClass('active');
+        if($(this).hasClass('active')){
+            $('.Resume-click-open').css({'height' : '100px'});
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    });
+
+    $('.btn-Resume-buttons').click(function(e){
+        $('.collapse').collapse('hide');
+    });
+});
+</script>
 
 {% endblock %}
