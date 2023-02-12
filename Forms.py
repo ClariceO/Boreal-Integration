@@ -16,8 +16,6 @@ class CreateBookingForm(Form):
     contact = IntegerField('', render_kw={"value": "81236458", "disabled": "disabled"})
     email = EmailField('', render_kw={"value": "bob@gmail.com", "disabled": "disabled"})
 
-    # insert db
-
 
     hairstylist = SelectField('', choices=[('', '--Please select your hairstylist--'), ('Julie Watson', 'Julie Watson'), ('Marc McKnew', 'Marc McKnew'), ('Jet Atkin', 'Jet Atkin'),('Jose Eber', 'Jose Eber')], default='')
     date = DateField('', default=date.today())
