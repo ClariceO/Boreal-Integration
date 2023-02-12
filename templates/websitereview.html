@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/websitereview.css') }}">
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-
-
 {% endblock %}
 {% block content %}
 
@@ -41,7 +38,7 @@
       <table class="table table-striped" style="background: #C4A484;">
       <thead>
             <tr >
-                <th>User name</th>
+
                 <th >First Name</th>
                 <th >Last Name</th>
                 <th >Name of hairstylist</th>
@@ -52,27 +49,29 @@
             </tr>
             </thead>
             <tbody>
-            {% for user in users_list %}
+           {% for user in users_list %}
             <tr>
                 <td>{{ user.get_first_name() }}</td>
-                <td>{{ user.get_first_name() }}</td>
                 <td>{{ user.get_last_name() }}</td>
-                {% if user.get_gender() == "A" %}
-                <td>AAA</td>
-                {% elif user.get_gender() == "B" %}
-                <td>BBB</td>
-                {% elif user.get_gender() == "C" %}
-                <td>CCC</td>
-                {% elif user.get_gender() == "D" %}
-                <td>DDD</td>
+                {% if user.get_hairstylistname() == "JW" %}
+                <td>Julie Watson</td>
+                {% elif user.get_hairstylistname() == "MM" %}
+                <td>Marc McKnew</td>
+                {% elif user.get_hairstylistname() == "JA" %}
+                <td>Jet Atkins</td>
+                {% elif user.get_hairstylistname() == "JE" %}
+                <td>Jose Eber</td>
                 {% endif %}
                 <td>{{ user.get_date() }}</td>
                 <td>{{ user.get_remarks() }}</td>
 
                 <td><a href="/updateUser/{{user.get_user_id()}}" class="btn btn-warning"><img src="{{ url_for('static', filename='img/edit.png') }}"></a></td>
+                   <!-- <form action="{{url_for('delete_user', id=user.get_user_id())}}" method="POST">
+ <img src="{{ url_for('static', filename='delete.png') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your review?');">
+                    </form>-->
                 <td>
                     <form action="{{url_for('delete_user', id=user.get_user_id())}}" method="POST">
-                        <img src="{{ url_for('static', filename='img/delete.png') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your review?');">
+           <input type="image" src=" {{ url_for('static', filename='img/delete.png') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your review?');">
                     </form>
                 </td>
             </tr>
@@ -145,7 +144,7 @@
                         <li class="col-sm-3">
 							<div class="fff">
 								<div class="thumbnail">
-									<img src="{{ url_for('static', filename='img/hair1.jpg') }}">
+									<img src="{{ url_for('static', filename='img/hair5.jpg') }}">
 								</div>
 								<div class="caption">
 									<h4 style="color : #C4A484;">Daniel Wong</h4>
@@ -157,7 +156,7 @@
                         <li class="col-sm-3">
 							<div class="fff">
 								<div class="thumbnail">
-									<img src="{{ url_for('static', filename='img/hair1.jpg') }}">
+									<img src="{{ url_for('static', filename='img/hair6.jpg') }}">
 								</div>
 								<div class="caption">
 									<h4 style="color : #C4A484;">Amy Wong</h4>
@@ -169,23 +168,23 @@
                         <li class="col-sm-3">
 							<div class="fff">
 								<div class="thumbnail">
-									<img src="{{ url_for('static', filename='img/hair1.jpg') }}">
+									<img src="{{ url_for('static', filename='img/hair7.jpg') }}">
 								</div>
 								<div class="caption">
 									<h4 style="color : #C4A484;">Lisa Cudrow</h4>
 									<p>With Boreal, Mark for 2-3years. Great service and friendly team. Always feels good after hair treatments and see improvements on my hair growth. 👍🏻</p>
-
-								</div>
+                                </div>
                             </div>
                         </li>
                         <li class="col-sm-3">
 							<div class="fff">
 								<div class="thumbnail">
-									<img src="{{ url_for('static', filename='img/hair2.jpg') }}">
+									<img src="{{ url_for('static', filename='img/hair8.jpg') }}">
 								</div>
 								<div class="caption">
-									<h4 style="color : #C4A484;">Praesent commodo</h4>
-									<p>Nullam Condimentum Nibh Etiam Sem</p>
+									<h4 style="color : #C4A484;">Dennis Khoo</h4>
+									<p>I wanted to thank Boreal for ten years of great service and work on my hair. You are a true professional and an expert in your field! I know I always count on your performance when it comes to cutting, dying, or styling my hair. No request of mine has ever been denied or altered, even if it would make your job more difficult.
+                                    </p>
 
 								</div>
                             </div>
@@ -194,58 +193,22 @@
               </div><!-- /Slide2 -->
             <div class="item">
                     <ul class="thumbnails">
-                        <li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<img src="{{ url_for('static', filename='img/hair1.jpg') }}">
-								</div>
-								<div class="caption">
-									<h4 style="color : #C4A484;">Maria Smantha</h4>
-									<p>Today I went to Boreal to get a detox treatment. Before beginning, Mark and Candy analysed my appearance and showed me the before and after pictures of customers they have had in the past. Overall, it was a good experience and I will continue to visit Boreal.</p>
-
-								</div>
-                            </div>
-                        </li>
-
-                        <li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-								</div>
-								<div class="caption">
-                                    <h4 style="color : #C4A484;">Maria Smantha</h4>
-                                    <p>Today I went to Boreal to get a detox treatment. Before beginning, Mark and Candy analysed my appearance and showed me the before and after pictures of customers they have </p>
-
-								</div>
-                            </div>
-                        </li>
-                        <li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-								</div>
-								<div class="caption">
-									<h4 style="color : #C4A484;">Maria Smantha</h4>
-									<p>Today I went to Boreal to get a detox treatment. Before beginning, Mark and Candy analysed my appearance and showed me the before and after pictures of customers they have had in the past. Overall, it was a good experience and I will continue to visit Boreal.</p>
-                                </div>
-                            </div>
-                        </li>
                         {% for user in users_list %}
                         <li class="col-sm-3">
 							<div class="fff">
                                 <div class="thumbnail">
-									<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+                                <img src="static/files/{{ user.get_file() }}" >
 								</div>
 								<div class="caption">
 									<h4 style="color : #C4A484;">{{ user.get_first_name() }}</h4>
                                     <p>Hairstylist :
-                                    {% if user.get_gender() == "A" %}
-                                       AAA
-                                    {% elif user.get_gender() == "B" %}
-                                       BBB
-                                    {% elif user.get_gender() == "C" %}
+                                    {% if user.get_hairstylistname() == "JW" %}
+                                       Julie Watson
+                                    {% elif user.get_hairstylistname() == "MM" %}
+                                       Marc McKnew
+                                    {% elif user.get_hairstylistname() == "C" %}
                                       CCC
-                                    {% elif user.get_gender() == "D" %}
+                                    {% elif user.get_hairstylistname() == "D" %}
                                        DDD
                                     {% endif %}
                                     <p>{{ user.get_remarks() }}</p>
@@ -253,10 +216,10 @@
 								</div>
                             </div>
                         </li>
+                        {% endfor %}
                     </ul>
-              </div><!-- /Slide3 -->
+            </div>
         </div>
-{% endfor %}
 
 	   <nav>
 			<ul class="control-box pager">
@@ -275,7 +238,6 @@
     </div>
 </div>
 {% block scripts %}
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="{{url_for('static', filename='js/websitereview.js')}}"></script>
       <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -283,5 +245,3 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 {% endblock %}
     {% endblock %}
-
-

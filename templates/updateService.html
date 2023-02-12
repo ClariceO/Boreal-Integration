@@ -6,8 +6,8 @@
 {% endblock %}
 {% block content %}
 {% from "includes/_formHelper.html" import render_field %}
-<div class="container service pt-5">
-<h1 class="display-4">Update Services</h1>
+ <div class="text-center" style="margin-left:auto; width:50% ;margin-right:auto;">
+<h1 class="mt-5 text-center" style="color:rgba(120,0,0,255); " >Create a new service</h1>
 <form method="POST" action="">
 <div class="form-group">
 {{ render_field(update_service_form.service, placeholder="Service Type", class="form-control") }}

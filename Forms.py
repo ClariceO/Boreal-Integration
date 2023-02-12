@@ -1,17 +1,8 @@
-from wtforms import Form, StringField, SelectField, DecimalField, TextAreaField, IntegerField, EmailField, DateField, TimeField, validators
-from wtforms import widgets, SelectMultipleField
+from wtforms import *
 from datetime import date
 import shelve
-
 from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField
 from wtforms.validators import InputRequired
-
-# Ana's
-# from wtforms import FileField
-
-
-
 
 
 class MultiCheckboxField(SelectMultipleField):
@@ -27,7 +18,7 @@ class CreateBookingForm(Form):
 
     # insert db
 
-    
+
     hairstylist = SelectField('', choices=[('', '--Please select your hairstylist--'), ('Julie Watson', 'Julie Watson'), ('Marc McKnew', 'Marc McKnew'), ('Jet Atkin', 'Jet Atkin'),('Jose Eber', 'Jose Eber')], default='')
     date = DateField('', default=date.today())
     time = TimeField('')
@@ -63,16 +54,25 @@ class CreateServiceForm(Form):
     service_price = DecimalField('', [validators.data_required()])  # Price
     service_image = StringField('', [validators.data_required()])  # Image Address
 
-# Ana's
-class CreateUserForm(Form):
-    first_name = StringField('First Name', [validators.Length(min=1, max=150), validators.DataRequired()])
-    last_name = StringField('Last Name', [validators.Length(min=1, max=150), validators.DataRequired()])
-    gender = SelectField('Name of hairstylist', [validators.DataRequired()], choices=[('', 'Select'), ('A', 'AAA'), ('B', 'BBB'), ('C', "CCC"),("D","DDD")],default='')
-    date = DateField('Select the date of your appointment', [validators.DataRequired()])
-    file = FileField('Upload a photo', [validators.Optional()])
-    remarks = TextAreaField('Remarks', [validators.DataRequired()])
-
 
 class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[InputRequired()])
-    submit = SubmitField("Create")
+    submit = SubmitField("Submit")
+
+
+# Ana's
+class CreateUserForm(Form):
+    first_name = StringField('', [validators.Length(min=1, max=150), validators.DataRequired()])
+    last_name = StringField('', [validators.Length(min=1, max=150), validators.DataRequired()])
+    hairstylistname = SelectField('', [validators.DataRequired()], choices=[('', 'Click to select your hairstylist'), ('JW', 'Julie Watson'), ('MM', 'Marc McKnew'), ('JA', "Jet Atkins"),("JE","Jose Eber")],default='')
+    date = DateField('Select the date of your appointment :', [validators.DataRequired()])
+    file = StringField('', [validators.DataRequired() , ])
+    remarks = TextAreaField('', [validators.DataRequired()])
+
+class CreateReviewForm(Form):
+    helpful = RadioField('Was our website helpful ?', choices=(("Very helpful","Very helpful"),("Helpful", "Helpful"),("Not helpful","Not helpful")))
+    convenience = RadioField("Was our website easy to use ?", choices = (("Very easy","Very Easy"), ("Easy" , "Easy"), ("Not easy","Not Easy")))
+    feedback = TextAreaField('Feedback : ',[ validators.data_required()])
+
+
+

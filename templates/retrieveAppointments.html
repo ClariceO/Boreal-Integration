@@ -120,7 +120,7 @@ Appointment {{ session.pop('appointment_deleted', None) }} was deleted.
       <td><a href="/updateAppointment/{{appointment.get_appointment_id()}}" class="change btn btn-warning">Change</a></td>
       <td>
       <form action="/deleteAppointment/{{appointment.get_appointment_id()}}" method="POST">
-      <input type="submit" value="Delete" class="delete btn btn-danger">
+      <input type="submit" value="Delete" class="delete btn btn-danger" onclick="return confirm('Are you sure you want to delete your appointment?');">
 
       </form>
       </td>

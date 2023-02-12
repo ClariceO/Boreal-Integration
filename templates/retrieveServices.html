@@ -61,7 +61,7 @@ a.close{
     <div class="flex-container">
     <a href="/updateService/{{service.get_service_id()}}" class="change flex-child btn btn-warning">Update</a>
     <form class="flex-child" action="/deleteService/{{service.get_service_id()}}" method="POST">
-    <input type="submit" value="Delete" class="delete btn btn-danger">
+    <input type="submit" value="Delete" class="delete btn btn-danger" onclick="return confirm('Are you sure you want to delete this service?');">
     </form>
     </div>
 

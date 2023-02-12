@@ -2,12 +2,12 @@ class User:
     count_id = 0
 
     # initializer method
-    def __init__(self, first_name, last_name, gender, date, remarks , file):
+    def __init__(self, first_name, last_name, hairstylistname, date, remarks , file):
         User.count_id += 1
         self.__user_id = User.count_id
         self.__first_name = first_name
         self.__last_name = last_name
-        self.__gender = gender
+        self.__hairstylistname = hairstylistname
         self.__date = date
         self.__file = file
         self.__remarks = remarks
@@ -22,8 +22,8 @@ class User:
     def get_last_name(self):
         return self.__last_name
 
-    def get_gender(self):
-        return self.__gender
+    def get_hairstylistname(self):
+        return self.__hairstylistname
 
     def get_date(self):
         return self.__date
@@ -43,8 +43,8 @@ class User:
     def set_last_name(self, last_name):
         self.__last_name = last_name
 
-    def set_gender(self, gender):
-        self.__gender = gender
+    def set_hairstylistname(self, hairstylistname):
+        self.__hairstylistname = hairstylistname
 
     def set_date(self, date):
         self.__date = date
@@ -54,5 +54,3 @@ class User:
 
     def set_file(self , file ):
         self.__file = file
-
-

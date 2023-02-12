@@ -1,16 +1,8 @@
 # Clarice's
 from flask import *
-from Forms import CreateBookingForm, CreateServiceForm
+from Forms import *
 import shelve
-import Appointment, Service
-
-# Ana's
-from Forms import CreateUserForm
-import User
-
-
-# Clarice's
-from Forms import UploadFileForm
+import Appointment, Service, User
 from werkzeug.utils import secure_filename
 import os
 
@@ -20,9 +12,11 @@ app.secret_key = 'HiImTheKey'
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = 'static/files'
 
+
 @app.route('/')
 def home():
     return render_template('home.html')
+
 
 # Ana's
 
@@ -31,8 +25,10 @@ def home():
 def review():
     return render_template('Review.html')
 
+
 @app.route('/createUser', methods=['GET', 'POST'])
 def create_user():
+    form = UploadFileForm()
     create_user_form = CreateUserForm(request.form)
     if request.method == 'POST' and create_user_form.validate():
         users_dict = {}
@@ -43,20 +39,18 @@ def create_user():
         except:
             print("Error in retrieving Users from user.db.")
 
-        user = User.User(create_user_form.first_name.data, create_user_form.last_name.data,create_user_form.gender.data, create_user_form.date.data, create_user_form.remarks.data , create_user_form.file.data)
+        user = User.User(create_user_form.first_name.data, create_user_form.last_name.data,create_user_form.hairstylistname.data, create_user_form.date.data, create_user_form.remarks.data , create_user_form.file.data)
         users_dict[user.get_user_id()] = user
         db['Users'] = users_dict
 
         db.close()
+    if form.validate_on_submit():
+        file = form.file.data # First grab the file
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) # Then save the file
 
         return redirect(url_for('retrieve_users'))
-    return render_template('createUser.html', form=create_user_form)
+    return render_template('createUser.html',form = form , create_user_form=create_user_form)
 
-
-
-@app.route('/index')
-def logo():
-    return render_template('index.html')
 
 @app.route('/websitereview')
 def retrieve_users():
@@ -70,11 +64,12 @@ def retrieve_users():
         user = users_dict.get(key)
         users_list.append(user)
 
-    return render_template('websitereview.html', users_list=users_list)
+    return render_template('websitereview.html', count=len(users_list), users_list=users_list)
 
 
 @app.route('/updateUser/<int:id>/', methods=['GET', 'POST'])
 def update_user(id):
+    form = UploadFileForm()
     update_user_form = CreateUserForm(request.form)
     if request.method == 'POST' and update_user_form.validate():
         users_dict = {}
@@ -83,12 +78,13 @@ def update_user(id):
         user = users_dict.get(id)
         user.set_first_name(update_user_form.first_name.data)
         user.set_last_name(update_user_form.last_name.data)
-        user.set_gender(update_user_form.gender.data)
+        user.set_hairstylistname(update_user_form.hairstylistname.data)
         user.set_date(update_user_form.date.data)
         user.set_file(update_user_form.file.data)
         user.set_remarks(update_user_form.remarks.data)
         db['Users'] = users_dict
         db.close()
+
         return redirect(url_for('retrieve_users'))
     else:
         users_dict = {}
@@ -98,31 +94,33 @@ def update_user(id):
         user = users_dict.get(id)
         update_user_form.first_name.data = user.get_first_name()
         update_user_form.last_name.data = user.get_last_name()
-        update_user_form.gender.data = user.get_gender()
+        update_user_form.hairstylistname.data = user.get_hairstylistname()
         update_user_form.date.data = user.get_date()
-        update_user_form.file = user.get_file()
+        update_user_form.file.data = user.get_file()
         update_user_form.remarks.data = user.get_remarks()
-        return render_template('updateUser.html' , form = update_user_form)
+        return render_template('updateUser.html' ,  create_user_form= update_user_form , form = form )
+
 
 @app.route('/deleteUser/<int:id>', methods=['POST'])
 def delete_user(id):
     users_dict = {}
     db = shelve.open('user.db', 'w')
     users_dict = db['Users']
+
     users_dict.pop(id)
+
     db['Users'] = users_dict
     db.close()
+
     return redirect(url_for('retrieve_users'))
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        uploaded_file = request.files['file']
-        if uploaded_file.filename != '':
-            uploaded_file.save(uploaded_file.filename)
-        return redirect(url_for('index'))
-    return render_template('index.html')
 
+@app.route('/reviewforwebsite' ,methods=["GET",'POST'])
+def create_feedback():
+    create_feedback_form = CreateReviewForm(request.form)
+    if request.method =="POST" and create_feedback_form.validate():
+        return redirect(url_for("retrieve_users"))
+    return render_template('reviewforwebsite.html', form = create_feedback_form)
 
 
 # Clarice's
@@ -145,7 +143,6 @@ def create_services():
         services_dict[id] = service
         db['Services'] = services_dict
 
-
         # # Test codes
         # services_dict = db['Services']
         # service = services_dict[service.get_service_id()]
@@ -160,6 +157,7 @@ def create_services():
         return redirect(url_for('retrieve_services'))
 
     return render_template('createService.html', form=form, create_service_form=create_service_form)
+
 
 @app.route('/retrieveServices')
 def retrieve_services():
